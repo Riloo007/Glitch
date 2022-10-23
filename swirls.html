@@ -1,0 +1,152 @@
+<html>
+<head>
+  <title>Glitch Homepage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<div id="global-page-header"></div>
+
+<body>
+  <div class="box">
+    <div class="box-header">
+      <h2>
+        BoxHeader
+      </h2>
+    </div>
+
+    <div class="post">
+        <div class="postHead">
+          <table>
+            <tr>
+            <td><p style="text-align: left;">The Original Thing</p></td>
+            <td><p style="text-align: right;">"Fancy Graphics"</p></td>
+            </tr>
+          </table>
+        </div>
+        <p>
+          This program originated from an Atari Graphics book: "BASIC FUN WITH GRAPHICS"
+          Written in BASIC for the Atari 400 in 1995, here's the original code.
+        </p>
+        <br>
+        <div class="code">
+            100 GRAPHICS 8:SETCOLOR 1,1,14:COLOR 1<br>
+            105 SETCOLOR 2,6,0<br>
+            110 PRINT "INPUT SIDE, ANGLE, INCREMENT"<br>
+            114 SETCOLOR 2,6,0<br>
+        </div>
+      </div>
+
+    <div class="post">
+      <div class="postHead">
+        <table>
+          <tr>
+          <td><p style="text-align: left;">Demo</p></td>
+          <td><p style="text-align: right;"></p></td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        The following is a Demo of the program, written in Javascript. I might adjust the appearance and make it more 
+        interactive at a later date. This is version 1.0, written at age 12 (I think). Looking back I realize this is 
+        a very uneffective implementation of the code in Javascript.
+      </p>
+      <br><br>
+      <html>
+        <canvas id="myCanvas" width="480" height="320"></canvas>
+        <script>
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+var x1 = canvas.width/2
+var x2 = canvas.width/2
+var y1 = canvas.height/2
+var y2 = canvas.height/2
+var i = 0
+
+
+var a = 0
+var aStore = a
+var r = 1
+var d = 5
+
+var n = 360/a
+
+a = a*(Math.PI/180)
+
+function download() {
+
+}
+
+function draw() {
+
+	x2 = r*Math.cos(a*i)+x1
+	y2 = -r*Math.sin(a*i)+y1
+	
+	if(x2<0 || x2>canvas.width || y2<0 || y2>canvas.height){
+
+		x1 = canvas.width/2;
+		x2 = canvas.width/2;
+		y1 = canvas.height/2;
+		y2 = canvas.height/2;
+		i = 0;
+
+
+		a = aStore+0.5;
+		aStore = a;
+		r = 1;
+
+		n = 360/a;
+
+		a = a*(Math.PI/180);
+
+		download();
+
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
+
+	ctx.beginPath();
+	ctx.moveTo(x1, y1);
+	ctx.lineTo(x2, y2);
+	ctx.strokeStyle = "red";
+	ctx.stroke();
+	ctx.closePath();
+
+	x1 = x2
+	y1 = y2
+	r = r+d
+	i = i+1
+
+}
+
+
+
+setInterval(draw, 1);
+
+        </script>
+      </html>
+    </div>
+
+    <div class="post">
+        <div class="postHead">
+          <table>
+            <tr>
+            <td><p style="text-align: left;">Explaination</p></td>
+            <td><p style="text-align: right;"></p></td>
+            </tr>
+          </table>
+        </div>
+        <p>
+          I'm still not totally sure how this works, but it effectivly uses circle math to calculate the next point in the circle.
+          This next point's location can vary depending on the radius (which is increased each interval), and the angle increment
+          (which is increased each drawing). 
+        </p>
+      </div>
+    
+  </div>
+</body>
+
+<div id="global-page-footer"></div>
+
+<script src="page.js"></script>
+</html>

@@ -99,3 +99,24 @@ p {
 .postHead table {
     width: 100%;
 }
+
+.ViewPostBtn {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 400;
+    padding: 5px;
+    background-color: rgb(167, 167, 167);
+    border-radius: 10px;
+    font-size: 25px;
+    border: 2px rgb(107, 107, 107) solid;
+    transition: .5s;
+    cursor: pointer;
+}
+.ViewPostBtn:hover {border: 2px rgb(0, 0, 0) solid; background-color: rgb(204, 204, 204);}
+
+.code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(37, 37, 37);
+    color: rgb(236, 236, 236);
+    padding: 10px;
+    border-radius: 5px;
+}
