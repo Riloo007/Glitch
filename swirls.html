@@ -36,18 +36,18 @@
             120 INPUT R,A,D<br>
             130 N=360/A<br>
             140 A=A*(3.14159/180)<br>
-            150 PLOT 100,100
-            160 X1=100:Y1=100
-            170 I=0
-            180 X2=R*COS(A*I)+X1
-            190 Y2=-R*SIN(A*I)+Y1
-            200 IF X2<0 OR X2>319 THEN END
-            210 IF Y2<0 OR Y2>159 THEN END
-            220 DRAWTO X2,Y2
-            230 X1=X2:Y1=Y2
-            240 R=R+D
-            250 I=I+1
-            260 GOTO 180
+            150 PLOT 100,100<br>
+            160 X1=100:Y1=100<br>
+            170 I=0<br>
+            180 X2=R*COS(A*I)+X1<br>
+            190 Y2=-R*SIN(A*I)+Y1<br>
+            200 IF X2<0 OR X2>319 THEN END<br>
+            210 IF Y2<0 OR Y2>159 THEN END<br>
+            220 DRAWTO X2,Y2<br>
+            230 X1=X2:Y1=Y2<br>
+            240 R=R+D<br>
+            250 I=I+1<br>
+            260 GOTO 180<br>
         </div>
       </div>
 
