@@ -14,9 +14,12 @@ var header = `
             <td>
                 <div class="navMenu">
                     <ul>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="TiCalculator.html">Calculator Hacking</a></li>
                         <li><a href="blender.html">Blender</a></li>
                         <li><a href="web.html">Web Development</a></li>
+                        <li><a href="web.html">Photoshop</a></li>
+                        <li><a href="web.html">Animation</a></li>
                     </ul>
                 </div>
             </td>
@@ -35,3 +38,5 @@ var footer = `
 
 document.getElementById("global-page-header").innerHTML = header;
 document.getElementById("global-page-footer").innerHTML = footer;
+
+window.scrollTo(0, 0);
