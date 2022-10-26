@@ -22,6 +22,7 @@ var header = `
                         <li><a href="web.html">Web Development</a></li>
                         <li><a href="web.html">Photoshop</a></li>
                         <li><a href="web.html">Animation</a></li>
+                        <li><a href="img2txt.html">Image to Text Art</a></li>
                     </ul>
                 </div>
             </td>

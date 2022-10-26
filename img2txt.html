@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Glitch Homepage</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="logo.png">
+</head>
+
+<div id="global-page-header"></div>
+
+<body>
+  <div class="box">
+    <div class="box-header">
+      <h2>
+        Image To Text
+      </h2>
+    </div>
+
+    <div class="post">
+      <div class="postHead">
+        <table>
+          <tr>
+          <td><p style="text-align: left;">Image</p></td>
+          <td><p style="text-align: right;"></p></td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        <input type="file" id="Img2TxtUpload" name="Img2TxtUpload">
+        <img src="" style="display: none;" id="imageDisplay">
+      </p>
+    </div>
+  </div>
+</body>
+
+<script>
+
+document.getElementById("Img2TxtUpload").onchange = function(e) { 
+  console.log("Input Changed");
+  console.log(document.getElementById("Img2TxtUpload").value);  
+  document.getElementById("imageDisplay").src = document.getElementById("Img2TxtUpload").value;
+  document.getElementById("imageDisplay").style = "display: block;"
+};
+
+    //setInterval(CheckImage, 500);
+
+</script>
+
+<div id="global-page-footer"></div>
+
+<script src="page.js"></script>
+</html>
