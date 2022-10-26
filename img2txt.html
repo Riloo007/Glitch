@@ -26,20 +26,100 @@
       </div>
       <p>
         <input type="file" id="Img2TxtUpload" name="Img2TxtUpload">
+        <input type="button" onclick="loadImage();" title="Load">
         <img src="" style="display: none;" id="imageDisplay">
+        <canvas id="canvas"></canvas>
       </p>
     </div>
+
+    <div class="post">
+      <div class="postHead">
+        <table>
+          <tr>
+          <td><p style="text-align: left;">Output</p></td>
+          <td><p style="text-align: right;"></p></td>
+          </tr>
+        </table>
+      </div>
+      <p id="Output" style="font-size: 10px; font-family: 'Courier New', Courier, monospace; line-height: 9px;">
+        
+      </p>
+    </div>
+
+
   </div>
 </body>
 
 <script>
 
-document.getElementById("Img2TxtUpload").onchange = function(e) { 
-  console.log("Input Changed");
-  console.log(document.getElementById("Img2TxtUpload").value);  
-  document.getElementById("imageDisplay").src = document.getElementById("Img2TxtUpload").value;
-  document.getElementById("imageDisplay").style = "display: block;"
+document.getElementById("Img2TxtUpload").onchange = function(evt) {
+  var tgt = evt.target || window.event.srcElement,
+      files = tgt.files;
+
+  if(FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      document.getElementById("imageDisplay").src = fr.result;
+
+
+    }
+    fr.readAsDataURL(files[0]);
+
+    //document.getElementById("imageDisplay").style = "display: block;";
+  }
 };
+
+function loadImage() {
+    var img = document.getElementById('imageDisplay');
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext("2d");
+    ctx.getContextAttributes().willReadFrequently = true;
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+
+    console.log(ctx.getImageData(10,10,1,1).data);
+
+    console.log(img.width, img.height);
+
+    var Output = "";
+
+    for(let y = 1 ; y < img.height; y += 4) {
+      for(let x = 1 ; x < img.width; x += 4) {
+        console.log(x, y)
+
+        //console.log(ctx.getImageData(10,10,1,1).data);
+        var r = ctx.getImageData(x,y,1,1).data[1];
+        var g = ctx.getImageData(x,y,1,1).data[2];
+        var b = ctx.getImageData(x,y,1,1).data[3];
+
+        var avg = (r + g + b) / 3;
+
+        Output += "<b style='font-weight:" + (avg * 1000) + "'>" + "A" + "</b>";
+
+        `if(avg < 100 && avg > 0)
+        {
+          Output += "<p style='font-weight:" + toString(avg) + "'>" + "A" + "</p>";
+          //document.write("A")
+        }
+        if(avg < 200 && avg > 100)
+        {
+          Output += "-";
+          //document.write("B")
+        }
+        if(avg < 300 && avg > 200)
+        {
+          Output += " ";
+          //document.write("C")
+        }`
+
+      }
+      Output += "<br>";
+      //document.write("<br>");
+    }
+
+    document.getElementById("Output").innerHTML = Output;
+}
 
     //setInterval(CheckImage, 500);
 
