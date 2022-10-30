@@ -30,6 +30,7 @@
         </p>
         <br>
         <div class="code">
+          <p>
             100 GRAPHICS 8:SETCOLOR 1,1,14:COLOR 1<br>
             105 SETCOLOR 2,6,0<br>
             110 PRINT "INPUT SIDE, ANGLE, INCREMENT"<br>
@@ -49,6 +50,9 @@
             240 R=R+D<br>
             250 I=I+1<br>
             260 GOTO 180<br>
+          </p>
+          <img src="Swirls/ProgramListing.png" style="width: 45%;">
+          <img src="Swirls/Demo.png" style="width: 45%;">
         </div>
       </div>
 
@@ -67,11 +71,14 @@
         a very uneffective implementation of the code in Javascript.
       </p>
       <br><br>
-      <html>
+      <html2>
+        <style>
+          canvas { background : #0F0000; display: block; margin: 0 auto; }
+        </style>
+        
         <canvas id="myCanvas" width="480" height="320"></canvas>
         <script>
-
-var canvas = document.getElementById("myCanvas");
+          var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 var x1 = canvas.width/2
@@ -140,7 +147,7 @@ function draw() {
 setInterval(draw, 1);
 
         </script>
-      </html>
+      </html2>
     </div>
 
     <div class="post">
@@ -158,6 +165,122 @@ setInterval(draw, 1);
           (which is increased each drawing). 
         </p>
       </div>
+    
+  </div>
+
+<!-- UPDATE -->
+  <div class="box">
+    <div class="box-header">
+      <h2>
+        Swirls Update
+      </h2>
+    </div>
+
+    <div class="post">
+      <div class="postHead">
+        <table>
+          <tr>
+          <td><p style="text-align: left;">Javascript Swirls</p></td>
+          <td><p style="text-align: right;">October 29th 2022</p></td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        Hello world! Today I wrote something up and increased the draw speed ten-fold:
+      </p>
+
+      <!-- SPEEEEEED -->
+      
+      <style>
+        #xanvas { background : #0F0000; display: block; margin: 0 auto; }
+      </style>      
+      
+      <canvas id="xanvas" width="500px" height="500px"></canvas>
+      
+      <script>
+      
+      var canvas2 = document.getElementById("xanvas");
+      var ctx2 = canvas2.getContext("2d");
+      
+      var x1x = canvas2.width/2
+      var x2x = canvas2.width/2
+      var y1x = canvas2.height/2
+      var y2x = canvas2.height/2
+      var ix = 0
+      
+      
+      var ax = 0
+      var aStorex = ax
+      var rx = 1
+      var dx = 5
+      
+      var nx = 360/ax
+      
+      ax = ax*(Math.PI/180)
+      
+      function draw() {
+        ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+      
+        var quit = false;
+        while(quit == false)
+        {
+        x2x = rx *Math.cos(ax * ix)+x1x
+        y2x = -rx *Math.sin(ax * ix)+y1x
+        
+        if(x2x<0 || x2x>canvas2.width || y2x<0 || y2x>canvas2.height){
+          quit = true;
+        }
+      
+        ctx2.beginPath();
+        ctx2.moveTo(x1x, y1x);
+        ctx2.lineTo(x2x, y2x);
+        ctx2.strokeStyle = "red";
+        ctx2.stroke();
+        ctx2.closePath();
+      
+        x1x = x2x
+        y1x = y2x
+        rx = rx + dx
+        ix = ix+1
+        }
+      
+        x1x = canvas2.width/2;
+        x2x = canvas2.width/2;
+        y1x = canvas2.height/2;
+        y2x = canvas2.height/2;
+        ix = 0;
+      
+      
+        ax = aStorex + 0.1;
+        aStorex = ax;
+        rx = 1;
+        nx = 360/ax;
+      
+        ax = ax*(Math.PI/180);
+      }
+
+      setInterval(draw, 1);
+      
+      </script>
+
+      <!-- End Speed -->
+
+
+    </div>
+
+    <div class="post">
+      <div class="postHead">
+        <table>
+          <tr>
+          <td><p style="text-align: left;">Interactive Demo</p></td>
+          <td><p style="text-align: right;">October 29th, 2022</p></td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        To mess around with some values, see our <a href="swirlsDemo.html">interactive demo.</a>
+      </p>
+    </div>
     
   </div>
 </body>
