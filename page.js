@@ -4,19 +4,9 @@ var header = `
 <meta name="viewport" content="width=device-width, initial-scale=2">
 
 <header>
-    <table>
-        <tr>
-            <td style="width: 0%;">
-                <div onclick="window.location.href='index.html';" style="width: 180px;">
-                    <img src="logo.png" width="50px" height="50px">
-                    <h1>Glitch</h1>
-                </div>
-            </td>
-            <td style="width: fit-content;"></td>
-            <td>
-                <div class="navMenu">
+<div class="navMenu">
                     <ul style="overflow: hidden; height: 45px; display: grid;" id="HiddenMenu">
-                        <li><a for="Menu" id="Menu" onclick='document.getElementById("HiddenMenu").style = "overflow: inherit;"'>Menu</a></li>
+                        <li><a for="Menu" id="Menu" onclick='ToggleMenu();'>Menu</a></li>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="TiCalculator.html">Calculator Hacking</a></li>
                         <li><a href="blender.html">Blender</a></li>
@@ -27,6 +17,17 @@ var header = `
                         <li><a href="atari.html">Atari</a></li>
                     </ul>
                 </div>
+
+    <table>
+        <tr>
+            <td style="width: 0%;">
+                <div onclick="window.location.href='index.html';" style="width: 180px;">
+                    <img src="logo.png" width="50px" height="50px">
+                    <h1>Glitch</h1>
+                </div>
+            </td>
+            <td style="width: fit-content;"></td>
+            <td>
             </td>
         </tr>
       </table>
@@ -40,6 +41,17 @@ var footer = `
   </p>
 </footer>
 `;
+MenuClosed = true;
+
+function ToggleMenu() {
+    if(MenuClosed) {
+        document.getElementById("HiddenMenu").style = "display: grid; height: fit-content;"
+        MenuClosed = false;
+    }else{
+        document.getElementById("HiddenMenu").style = "display: grid; height: 45px;"
+        MenuClosed = true;
+    }
+}
 
 document.getElementById("global-page-header").innerHTML = header;
 document.getElementById("global-page-footer").innerHTML = footer;
