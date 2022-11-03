@@ -15,7 +15,8 @@ var header = `
             <td style="width: fit-content;"></td>
             <td>
                 <div class="navMenu">
-                    <ul>
+                    <ul style="overflow: hidden; height: 45px; display: grid;" id="HiddenMenu">
+                        <li><a for="Menu" id="Menu" onclick='document.getElementById("HiddenMenu").style = "overflow: inherit;"'>Menu</a></li>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="TiCalculator.html">Calculator Hacking</a></li>
                         <li><a href="blender.html">Blender</a></li>
