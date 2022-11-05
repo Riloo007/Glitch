@@ -9,11 +9,12 @@ html {
     background-image: url('background.jpeg');
     scroll-behavior: smooth;
 }
+body {margin: 0px;}
 header {
     height: 50px;
-    width: calc(100% + 20px);
-    margin-top: -10px;
-    margin-left: -10px;
+    width: 100%;
+    /**margin-top: -10px;
+    margin-left: -10px;**/
     background-color: rgb(0, 32, 58);
     padding: 10px;
     flex-wrap: wrap;
@@ -27,16 +28,16 @@ header div {
     cursor: pointer;
 }
 header table {
-    width: calc(100% - 20px);
+    width: 100%;
 }
 
 footer {
     display: grid;
     height: auto;
-    width: calc(100% + 20px);
+    width: 100%;
     margin-top: 60px;
     margin-bottom: -10px;
-    margin-left: -10px;
+    /**margin-left: -10px;**/
     background-color: rgb(0, 32, 58);
     padding: 10px;
     flex-wrap: wrap;
@@ -162,6 +163,7 @@ p a :visited {
     font-family: 'Comfortaa', cursive;
     font-size: 15px;
     align-items: center;
+    user-select: none;
 
     float: right;
 
@@ -201,3 +203,13 @@ p a :visited {
 
     box-shadow: 0px 0px 0px #363636;
 }
+
+@media screen and (orientation: portrait) {
+    
+    .box {
+        width: 90%;
+        margin-left: 2%;
+    }
+    p {font-size: 30px;}
+}
+
