@@ -1,7 +1,7 @@
 console.log("Yes It's Working");
 
 var header = `
-<meta name="viewport" content="width=device-width, initial-scale=2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <header>
 <div class="navMenu">
