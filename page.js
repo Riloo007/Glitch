@@ -12,7 +12,7 @@ var header = `
                         <li><a href="blender.html">Blender</a></li>
                         <li><a href="web.html">Web Development</a></li>
                         <li><a href="web.html">Photoshop</a></li>
-                        <li><a href="web.html">Animation</a></li>
+                        <li><a href="animations.html">Animation</a></li>
                         <li><a href="img2txt.html">Image to Text Art</a></li>
                         <li><a href="atari.html">Atari</a></li>
                     </ul>

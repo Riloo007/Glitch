@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-US" class="hide-scroll">
+
+  <head>
+    <title>Collage Animation by Riley Pierson</title>
+  </head>
+
+<body onclick = "Go()">
+
+  <audio preload autoplay="auto" loop muted id="T1"><source src="html/sound/T1.ogg" type="audio/ogg"></audio>
+  <audio preload autoplay="auto" loop muted id="T2"><source src="html/sound/T2.ogg" type="audio/ogg"></audio>
+  <audio preload autoplay="auto" loop muted id="T3"><source src="html/sound/T3.ogg" type="audio/ogg"></audio>
+  <audio preload autoplay="auto" loop muted id="T4"><source src="html/sound/T4.ogg" type="audio/ogg"></audio>
+  <audio preload autoplay="auto" loop muted id="T5"><source src="html/sound/T5.ogg" type="audio/ogg"></audio>
+  <audio preload autoplay="auto" loop muted id="T6"><source src="html/sound/T6.ogg" type="audio/ogg"></audio>
+  <audio preload autoplay="auto" loop muted id="T7"><source src="html/sound/T7.ogg" type="audio/ogg"></audio>
+  <audio preload autoplay="auto" loop muted id="T8"><source src="html/sound/T8.ogg" type="audio/ogg"></audio>
+  <audio preload autoplay="auto" loop muted id="T9"><source src="html/sound/T9.ogg" type="audio/ogg"></audio>
+
+  <p>
+    Animation Collage demonstrating<br>nine different principles of animation. <br><br>
+    Hover your mouse to hear the sounds in each scene.
+  </p>
+
+  <p id="instruction">
+  Click anywhere to start.
+  </p>
+
+  <div id="aanimatedimage">
+    <img src='html/f/01.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/02.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/03.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/04.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/05.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/06.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/07.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/08.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/09.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/10.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/11.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/12.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/13.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/14.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/15.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/16.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/17.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/18.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/19.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/20.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/21.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/22.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/23.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/24.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/25.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/26.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/27.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/28.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/29.png' usemap="#map" onclick="Go()"/>
+    <img src='html/f/30.png' usemap="#map" onclick="Go()"/>
+  </div>
+
+
+  <div style="align-content: center; width: 100%; height: auto;">
+    <xgif
+      src="html/Collage.gif"
+      usemap="#map"
+      style="display: block; margin-left: auto; margin-right: auto;">
+    </xgif>
+
+    <map name="map" onmouseleave="muteAudio()">
+      <area onmouseover="play1()" title="Squash and Stretch" coords="15,16,319,320" shape="rect">
+      <area onmouseover="play2()" title="Easing" coords="340,16,641,318" shape="rect">
+      <area onmouseover="play3()" title="Follow Through / Overlapping Action" coords="664,17,963,319" shape="rect">
+      <area onmouseover="play4()" title="Exaggeration" coords="15,340,317,641" shape="rect">
+      <area onmouseover="play5()" title="Anticipation" coords="341,338,642,641" shape="rect">
+      <area onmouseover="play6()" title="Secondary Action" coords="665,338,966,641" shape="rect">
+      <area onmouseover="play7()" title="Arcs" coords="17,660,317,964" shape="rect">
+      <area onmouseover="play8()" title="Staging" coords="340,660,642,964" shape="rect">
+      <area onmouseover="play9()" title="Solid Drawing" coords="663,660,965,961" shape="rect">
+    </map>
+  </div>
+
+  <style>
+    p
+    {
+      color: azure;
+      font-size: 200%;
+      font-style: italic;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+    }
+
+    body
+    {
+      background: rgb(2,0,36);
+      background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(7,7,60,1) 21%, rgba(0,60,73,1) 100%);
+    }
+
+    img
+    {
+      position: absolute;
+      display: inline-block;
+    }
+
+    #aanimatedimage
+    {
+      display: block;
+      margin: auto;
+      width: 980px;
+      height: 980px;
+
+      -webkit-box-shadow: 5px 5px 17px 5px rgba(0,0,0,0.56); 
+      box-shadow: 5px 5px 17px 5px rgba(0,0,0,0.56);
+    }
+
+  </style>
+
+  <script>
+    const imageList = document.getElementById("aanimatedimage").children;
+
+    var imageCurrent = 0;
+    var go = false;
+    var imagesMax = imageList.length;
+
+    resetAudio();
+    setInterval(playing, 1/15*1000)
+
+    function playing()
+    {
+      if(go)
+      {
+        imageCurrent += 1;
+        
+        if(imageCurrent == imagesMax - 1)
+        {
+          imageList[imageCurrent].style.visibility = "hidden";
+          imageList[0].style.visibility = "visible";
+          imageCurrent = -1;
+          resetAudio();
+        } else {
+          imageList[imageCurrent].style.visibility = "hidden";
+          imageList[imageCurrent+1].style.visibility = "visible";
+        }
+      }
+    }
+
+    function Go()
+    {
+      console.log("GotFocus");
+      document.getElementById("instruction").remove();
+      for (let x = 0; x < imagesMax; x++) {imageList[x].style.visibility = "hidden"; console.log(x);}
+      go = true;
+      document.body.onclick = "";
+    }
+
+    function resetAudio()
+    {
+      document.getElementById("T1").currentTime = 0;
+      document.getElementById("T2").currentTime = 0;
+      document.getElementById("T3").currentTime = 0;
+      document.getElementById("T4").currentTime = 0;
+      document.getElementById("T5").currentTime = 0;
+      document.getElementById("T6").currentTime = 0;
+      document.getElementById("T7").currentTime = 0;
+      document.getElementById("T8").currentTime = 0;
+      document.getElementById("T9").currentTime = 0;
+    }
+
+    function muteAudio()
+    {
+      document.getElementById("T1").muted = true;
+      document.getElementById("T2").muted = true;
+      document.getElementById("T3").muted = true;
+      document.getElementById("T4").muted = true;
+      document.getElementById("T5").muted = true;
+      document.getElementById("T6").muted = true;
+      document.getElementById("T7").muted = true;
+      document.getElementById("T8").muted = true;
+      document.getElementById("T9").muted = true;
+    }
+
+    function play1() {muteAudio(); document.getElementById("T1").muted = false;}
+    function play2() {muteAudio(); document.getElementById("T2").muted = false;}
+    function play3() {muteAudio(); document.getElementById("T3").muted = false;}
+    function play4() {muteAudio(); document.getElementById("T4").muted = false;}
+    function play5() {muteAudio(); document.getElementById("T5").muted = false;}
+    function play6() {muteAudio(); document.getElementById("T6").muted = false;}
+    function play7() {muteAudio(); document.getElementById("T7").muted = false;}
+    function play8() {muteAudio(); document.getElementById("T8").muted = false;}
+    function play9() {muteAudio(); document.getElementById("T9").muted = false;}
+
+  </script>
+</body>
