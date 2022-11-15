@@ -91,6 +91,8 @@
             </td>
           </tr>
         </table>
+
+        <input type="text" id="textInput" style="width: 100%; height: auto;">
         
         <img src="" style="display: none; width: 10px; height: auto;" id="imageDisplay">
         <img src="" style="display: none; width: 10px; height: auto;" id="maskDisplay">
@@ -99,8 +101,7 @@
       </p>
             </td>
             <td>
-              <p id="Output" style="font-size: 10px; font-family: 'Courier New', Courier, monospace; line-height: 9px; overflow: hidden;">
-              </p>
+              
             </td>
           </tr>
         </table>
@@ -108,9 +109,18 @@
       
     </div>
 
-
-
-
+    <div class="post">
+      <div class="postHead">
+        <table>
+          <tr>
+          <td><p style="text-align: left;">Output</p></td>
+          <td><p style="text-align: right;"></p></td>
+          </tr>
+        </table>
+      </div>
+      <p id="Output" style="font-size: 10px; font-family: 'Courier New', Courier, monospace; line-height: 9px; overflow: hidden;">
+      </p>
+    </div>
   </div>
 </body>
 
@@ -149,10 +159,11 @@ document.getElementById("mask").onchange = function(evt2) {
 };
 
 function loadImage() {
-  var string = `
-  Okay, that's gonna be easy. Life isn't as easy as we think it is. Nothing is easy. This is easy! Math is way too easy. Quickly and easily, just like that This is very easy, maybe, mathematically. Math is very easy as long as you understand it Logorithms should be very easy to me. It's not always that simple, but it often is. That is always easy if you can follow the steps. So once I make that connection, Life's pretty easy. It's so easy to get lost, and when you do, you're in trouble. We'll do 2, 3, and 4. Not easy! Mathematically, it might be a very simple question. Should this be easy? Maybe, it depends how good your math is. So, life is easy. Life always was easy. Can I take the log of both sides? Yeah, easy! It always seems easy when someone else is doing it. All math is easy, any questions? I can't explain it, it just works. How many got three points on that page? Not easy! It's frustrating to make a mistake, so try not to make a mistake. Really quite easy Have a little fun and solve them all You only have to know everything. Oh man, too many things to play with your mind. You say that's kind of easy, but it's not really. I'm literally afraid the class average is going to be 90%, and I'm going to make it as hard as I can. I don't do anything brilliant, cause it's really quite easy. It's easy to get very lost. Everything's easy in this chapter, that's why we're going so quickly. You've got to be sure of every little thing. It's not as easy as it appears to be So, hard question? Mm, maybe not I was going to say something, and this is what I was going to say: Hello, good morning! Just a little thinking, make sure you know. I'd like everyone to get 100%, but I'm not going to make it easy. Do this, and you'll never make a mistake. That's a big hole. You have a graphing calculator, it'll be easy for the most part. It will always be that way. Factoring is so easy, I just have to make sure it's right. The next thing here really isn't that challenging. I don't know, I could care less. You have a calculator, you should get it right. This is just mathematical fun Not all my stories are true, but that one's true. I will never pay another penny of interest. Okay, that's gonna be easy. Life isn't as easy as we think it is. Nothing is easy. This is easy! Math is way too easy. Quickly and easily, just like that This is very easy, maybe, mathematically. Math is very easy as long as you understand it Logorithms should be very easy to me. It's not always that simple, but it often is. That is always easy if you can follow the steps. So once I make that connection, Life's pretty easy. It's so easy to get lost, and when you do, you're in trouble. We'll do 2, 3, and 4. Not easy! Mathematically, it might be a very simple question. Should this be easy? Maybe, it depends how good your math is. So, life is easy. Life always was easy. Can I take the log of both sides? Yeah, easy! It always seems easy when someone else is doing it. All math is easy, any questions? I can't explain it, it just works. How many got three points on that page? Not easy! It's frustrating to make a mistake, so try not to make a mistake. Really quite easy Have a little fun and solve them all You only have to know everything. Oh man, too many things to play with your mind. You say that's kind of easy, but it's not really. I'm literally afraid the class average is going to be 90%, and I'm going to make it as hard as I can. I don't do anything brilliant, cause it's really quite easy. It's easy to get very lost. Everything's easy in this chapter, that's why we're going so quickly. You've got to be sure of every little thing. It's not as easy as it appears to be So, hard question? Mm, maybe not I was going to say something, and this is what I was going to say: Hello, good morning! Just a little thinking, make sure you know. I'd like everyone to get 100%, but I'm not going to make it easy. Do this, and you'll never make a mistake. That's a big hole. You have a graphing calculator, it'll be easy for the most part. It will always be that way. Factoring is so easy, I just have to make sure it's right. The next thing here really isn't that challenging. I don't know, I could care less. You have a calculator, you should get it right. This is just mathematical fun Not all my stories are true, but that one's true. I will never pay another penny of interest. Okay, that's gonna be easy. Life isn't as easy as we think it is. Nothing is easy. This is easy! Math is way too easy. Quickly and easily, just like that This is very easy, maybe, mathematically. Math is very easy as long as you understand it Logorithms should be very easy to me. It's not always that simple, but it often is. That is always easy if you can follow the steps. So once I make that connection, Life's pretty easy. It's so easy to get lost, and when you do, you're in trouble. We'll do 2, 3, and 4. Not easy! Mathematically, it might be a very simple question. Should this be easy? Maybe, it depends how good your math is. So, life is easy. Life always was easy. Can I take the log of both sides? Yeah, easy! It always seems easy when someone else is doing it. All math is easy, any questions? I can't explain it, it just works. How many got three points on that page? Not easy! It's frustrating to make a mistake, so try not to make a mistake. Really quite easy Have a little fun and solve them all You only have to know everything. Oh man, too many things to play with your mind. You say that's kind of easy, but it's not really. I'm literally afraid the class average is going to be 90%, and I'm going to make it as hard as I can. I don't do anything brilliant, cause it's really quite easy. It's easy to get very lost. Everything's easy in this chapter, that's why we're going so quickly. You've got to be sure of every little thing. It's not as easy as it appears to be So, hard question? Mm, maybe not I was going to say something, and this is what I was going to say: Hello, good morning! Just a little thinking, make sure you know. I'd like everyone to get 100%, but I'm not going to make it easy. Do this, and you'll never make a mistake. That's a big hole. You have a graphing calculator, it'll be easy for the most part. It will always be that way. Factoring is so easy, I just have to make sure it's right. The next thing here really isn't that challenging. I don't know, I could care less. You have a calculator, you should get it right. This is just mathematical fun Not all my stories are true, but that one's true. I will never pay another penny of interest. Okay, that's gonna be easy. Life isn't as easy as we think it is. Nothing is easy. This is easy! Math is way too easy. Quickly and easily, just like that This is very easy, maybe, mathematically. Math is very easy as long as you understand it Logorithms should be very easy to me. It's not always that simple, but it often is. That is always easy if you can follow the steps. So once I make that connection, Life's pretty easy. It's so easy to get lost, and when you do, you're in trouble. We'll do 2, 3, and 4. Not easy! Mathematically, it might be a very simple question. Should this be easy? Maybe, it depends how good your math is. So, life is easy. Life always was easy. Can I take the log of both sides? Yeah, easy! It always seems easy when someone else is doing it. All math is easy, any questions? I can't explain it, it just works. How many got three points on that page? Not easy! It's frustrating to make a mistake, so try not to make a mistake. Really quite easy Have a little fun and solve them all You only have to know everything. Oh man, too many things to play with your mind. You say that's kind of easy, but it's not really. I'm literally afraid the class average is going to be 90%, and I'm going to make it as hard as I can. I don't do anything brilliant, cause it's really quite easy. It's easy to get very lost. Everything's easy in this chapter, that's why we're going so quickly. You've got to be sure of every little thing. It's not as easy as it appears to be So, hard question? Mm, maybe not I was going to say something, and this is what I was going to say: Hello, good morning! Just a little thinking, make sure you know. I'd like everyone to get 100%, but I'm not going to make it easy. Do this, and you'll never make a mistake. That's a big hole. You have a graphing calculator, it'll be easy for the most part. It will always be that way. Factoring is so easy, I just have to make sure it's right. The next thing here really isn't that challenging. I don't know, I could care less. You have a calculator, you should get it right. This is just mathematical fun Not all my stories are true, but that one's true. I will never pay another penny of interest.
+  //var string = `
+//  Okay, that's gonna be easy. Life isn't as easy as we think it is. Nothing is easy. This is easy! Math is way too easy. Quickly and easily, just like that This is very easy, maybe, mathematically. Math is very easy as long as you understand it Logorithms should be very easy to me. It's not always that simple, but it often is. That is always easy if you can follow the steps. So once I make that connection, Life's pretty easy. It's so easy to get lost, and when you do, you're in trouble. We'll do 2, 3, and 4. Not easy! Mathematically, it might be a very simple question. Should this be easy? Maybe, it depends how good your math is. So, life is easy. Life always was easy. Can I take the log of both sides? Yeah, easy! It always seems easy when someone else is doing it. All math is easy, any questions? I can't explain it, it just works. How many got three points on that page? Not easy! It's frustrating to make a mistake, so try not to make a mistake. Really quite easy Have a little fun and solve them all You only have to know everything. Oh man, too many things to play with your mind. You say that's kind of easy, but it's not really. I'm literally afraid the class average is going to be 90%, and I'm going to make it as hard as I can. I don't do anything brilliant, cause it's really quite easy. It's easy to get very lost. Everything's easy in this chapter, that's why we're going so quickly. You've got to be sure of every little thing. It's not as easy as it appears to be So, hard question? Mm, maybe not I was going to say something, and this is what I was going to say: Hello, good morning! Just a little thinking, make sure you know. I'd like everyone to get 100%, but I'm not going to make it easy. Do this, and you'll never make a mistake. That's a big hole. You have a graphing calculator, it'll be easy for the most part. It will always be that way. Factoring is so easy, I just have to make sure it's right. The next thing here really isn't that challenging. I don't know, I could care less. You have a calculator, you should get it right. This is just mathematical fun Not all my stories are true, but that one's true. I will never pay another penny of interest. Okay, that's gonna be easy. Life isn't as easy as we think it is. Nothing is easy. This is easy! Math is way too easy. Quickly and easily, just like that This is very easy, maybe, mathematically. Math is very easy as long as you understand it Logorithms should be very easy to me. It's not always that simple, but it often is. That is always easy if you can follow the steps. So once I make that connection, Life's pretty easy. It's so easy to get lost, and when you do, you're in trouble. We'll do 2, 3, and 4. Not easy! Mathematically, it might be a very simple question. Should this be easy? Maybe, it depends how good your math is. So, life is easy. Life always was easy. Can I take the log of both sides? Yeah, easy! It always seems easy when someone else is doing it. All math is easy, any questions? I can't explain it, it just works. How many got three points on that page? Not easy! It's frustrating to make a mistake, so try not to make a mistake. Really quite easy Have a little fun and solve them all You only have to know everything. Oh man, too many things to play with your mind. You say that's kind of easy, but it's not really. I'm literally afraid the class average is going to be 90%, and I'm going to make it as hard as I can. I don't do anything brilliant, cause it's really quite easy. It's easy to get very lost. Everything's easy in this chapter, that's why we're going so quickly. You've got to be sure of every little thing. It's not as easy as it appears to be So, hard question? Mm, maybe not I was going to say something, and this is what I was going to say: Hello, good morning! Just a little thinking, make sure you know. I'd like everyone to get 100%, but I'm not going to make it easy. Do this, and you'll never make a mistake. That's a big hole. You have a graphing calculator, it'll be easy for the most part. It will always be that way. Factoring is so easy, I just have to make sure it's right. The next thing here really isn't that challenging. I don't know, I could care less. You have a calculator, you should get it right. This is just mathematical fun Not all my stories are true, but that one's true. I will never pay another penny of interest. Okay, that's gonna be easy. Life isn't as easy as we think it is. Nothing is easy. This is easy! Math is way too easy. Quickly and easily, just like that This is very easy, maybe, mathematically. Math is very easy as long as you understand it Logorithms should be very easy to me. It's not always that simple, but it often is. That is always easy if you can follow the steps. So once I make that connection, Life's pretty easy. It's so easy to get lost, and when you do, you're in trouble. We'll do 2, 3, and 4. Not easy! Mathematically, it might be a very simple question. Should this be easy? Maybe, it depends how good your math is. So, life is easy. Life always was easy. Can I take the log of both sides? Yeah, easy! It always seems easy when someone else is doing it. All math is easy, any questions? I can't explain it, it just works. How many got three points on that page? Not easy! It's frustrating to make a mistake, so try not to make a mistake. Really quite easy Have a little fun and solve them all You only have to know everything. Oh man, too many things to play with your mind. You say that's kind of easy, but it's not really. I'm literally afraid the class average is going to be 90%, and I'm going to make it as hard as I can. I don't do anything brilliant, cause it's really quite easy. It's easy to get very lost. Everything's easy in this chapter, that's why we're going so quickly. You've got to be sure of every little thing. It's not as easy as it appears to be So, hard question? Mm, maybe not I was going to say something, and this is what I was going to say: Hello, good morning! Just a little thinking, make sure you know. I'd like everyone to get 100%, but I'm not going to make it easy. Do this, and you'll never make a mistake. That's a big hole. You have a graphing calculator, it'll be easy for the most part. It will always be that way. Factoring is so easy, I just have to make sure it's right. The next thing here really isn't that challenging. I don't know, I could care less. You have a calculator, you should get it right. This is just mathematical fun Not all my stories are true, but that one's true. I will never pay another penny of interest. Okay, that's gonna be easy. Life isn't as easy as we think it is. Nothing is easy. This is easy! Math is way too easy. Quickly and easily, just like that This is very easy, maybe, mathematically. Math is very easy as long as you understand it Logorithms should be very easy to me. It's not always that simple, but it often is. That is always easy if you can follow the steps. So once I make that connection, Life's pretty easy. It's so easy to get lost, and when you do, you're in trouble. We'll do 2, 3, and 4. Not easy! Mathematically, it might be a very simple question. Should this be easy? Maybe, it depends how good your math is. So, life is easy. Life always was easy. Can I take the log of both sides? Yeah, easy! It always seems easy when someone else is doing it. All math is easy, any questions? I can't explain it, it just works. How many got three points on that page? Not easy! It's frustrating to make a mistake, so try not to make a mistake. Really quite easy Have a little fun and solve them all You only have to know everything. Oh man, too many things to play with your mind. You say that's kind of easy, but it's not really. I'm literally afraid the class average is going to be 90%, and I'm going to make it as hard as I can. I don't do anything brilliant, cause it's really quite easy. It's easy to get very lost. Everything's easy in this chapter, that's why we're going so quickly. You've got to be sure of every little thing. It's not as easy as it appears to be So, hard question? Mm, maybe not I was going to say something, and this is what I was going to say: Hello, good morning! Just a little thinking, make sure you know. I'd like everyone to get 100%, but I'm not going to make it easy. Do this, and you'll never make a mistake. That's a big hole. You have a graphing calculator, it'll be easy for the most part. It will always be that way. Factoring is so easy, I just have to make sure it's right. The next thing here really isn't that challenging. I don't know, I could care less. You have a calculator, you should get it right. This is just mathematical fun Not all my stories are true, but that one's true. I will never pay another penny of interest.
+//`
 
-  `
+    var string = document.getElementById("textInput").value;
 
     var img = document.getElementById('imageDisplay');
     var canvas = document.getElementById('canvas');
@@ -181,15 +192,42 @@ function loadImage() {
     for(let y = 1 ; y < img.height; y += img.height / document.getElementById("charsHigh").value) {
       for(let x = 1 ; x < img.width; x += img.width / document.getElementById("charsWide").value) {
 
-        console.log()
-        console.log(charOff);
+        //console.log()
+        //console.log(charOff);
 
         //console.log(ctx.getImageData(10,10,1,1).data);
-        var r = ctx.getImageData(x,y,1,1).data[1];
-        var g = ctx.getImageData(x,y,1,1).data[2];
-        var b = ctx.getImageData(x,y,1,1).data[3];
+        var avgR;
+        var avgG;
+        var avgB;
+        
 
-        var avg = (r + g + b) / 3;
+        colorAvg = 0;
+
+        var r = ctx.getImageData(x + colorAvg,y,5,5).data[0];
+        var g = ctx.getImageData(x + colorAvg,y,5,5).data[1];
+        var b = ctx.getImageData(x + colorAvg,y,5,5).data[2];
+        avgR = r;
+        avgG = g;
+        avgB = b;
+console.log("Color 1x1", ctx.getImageData(x + colorAvg,y,1,1).data); 
+
+        
+// Grab increment x increment with ctx 
+
+/**
+
+        for(let colorAvg = 0 ; colorAvg < img.width / document.getElementById("charsWide").value ; colorAvg += 1) {
+          var r = ctx.getImageData(x + colorAvg,y,1,1).data[0];
+          var g = ctx.getImageData(x + colorAvg,y,1,1).data[1];
+          var b = ctx.getImageData(x + colorAvg,y,1,1).data[2];
+
+          avgR = (avgR + r) / 2;
+          avgG = (avgG + g) / 2;
+          avgB = (avgB + b) / 2;
+
+          console.log(colorAvg);
+        }  **/
+        var avg = (avgR + avgG + avgB) / 3;
 
         var CS = document.getElementById("colorSubtraction").value;
 
@@ -224,7 +262,7 @@ function loadImage() {
         }
         
 
-        Output += "<x style='font-weight:" + (avg * document.getElementById("boldMultiplier").value + 1) + "; font-size:" + document.getElementById("fontSize").value + "; color: rgb(" + (avg - CS) + "," + (avg - CS) + "," + (avg - CS) + ");" + " '>" + char + "</x>";
+        Output += "<x style='font-weight:" + (avg * document.getElementById("boldMultiplier").value + 1) + "; font-size:" + document.getElementById("fontSize").value + "; color: rgb(" + (avgR - CS) + "," + (avgG - CS) + "," + (avgB - CS) + ");" + " '>" + char + "</x>";
 
 
         `if(avg < 100 && avg > 0)
