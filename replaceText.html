@@ -58,7 +58,7 @@
 
   function replaceText() {
     if(document.getElementById("Find").value != '') {
-        document.getElementById("Output").value = document.getElementById("InputText").value.replace(document.getElementById("Find").value, document.getElementById("Replace").value);
+        document.getElementById("Output").value = document.getElementById("InputText").value.replaceAll(document.getElementById("Find").value, document.getElementById("Replace").value);
     } else {
         document.getElementById("Output").value = document.getElementById("InputText").value;
     }
