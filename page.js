@@ -15,6 +15,7 @@ var header = `
                         <li><a href="animations.html">Animation</a></li>
                         <li><a href="img2txt.html">Image to Text Art</a></li>
                         <li><a href="replaceText.html">Replace Text</a></li>
+                        <li><a href="terrainGenerator.html">Terrain Generator</a></li>
                         <li><a href="atari.html">Atari</a></li>
                     </ul>
                 </div>
