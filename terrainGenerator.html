@@ -15,7 +15,7 @@
       </h2>
     </div>
 
-    <img src="logo.png" style="display: block; width: 200px; height: auto;" id="imageDisplay">
+    <!--<img src="logo.png" style="display: block; width: 200px; height: auto;" id="imageDisplay">-->
 
     <div class="post">
       <div class="postHead">
@@ -26,7 +26,7 @@
           </tr>
         </table>
       </div>
-      <canvas id="MainCanvas"></canvas>
+      <canvas id="MainCanvas" width="450px"></canvas>
     </div>
     
   </div>
@@ -56,22 +56,38 @@ var canvas = document.getElementById("MainCanvas");
 var ctx = canvas.getContext("2d");
 
 function Generate(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    //Generate terrain Shape
+    var h = 0;
+    var hc = 0;
+    for(let x = 1; x < canvas.width; x++) {
+      h += Math.random() * 0.07;
+      hc += Math.random() * 0.1;
+      y = Math.sin(h) * 10 + Math.sin(hc) * 10 + 50;
+      drawLine(canvas.height - y, 0, 0, 0, x, y);
+      //console.log(y);
+    }
+
+    //Colorize
+
     var yi = 0
     
-    var img = document.getElementById('imageDisplay');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, 0, 0, img.width, img.height);
+    //var img = document.getElementById('imageDisplay');
+    //ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //ctx.drawImage(img, 0, 0, img.width, img.height);
     ctx.getContextAttributes().willReadFrequently = true;
 
     for(var x = 1; x < canvas.width; x++) {
         for(var y = 1; y < canvas.height; y++) {
-            var r = ctx.getImageData(x,y,5,5).data[0];
-            var g = ctx.getImageData(x,y,5,5).data[1];
-            var b = ctx.getImageData(x,y,5,5).data[2];
+            var r = ctx.getImageData(x,y,1,1).data[0];
+            var g = ctx.getImageData(x,y,1,1).data[1];
+            var b = ctx.getImageData(x,y,1,1).data[2];
 
             avg = (r + g + b) / 3;
+            console.log(avg);
 
-            if(avg < 100) {
+            if(avg > 100) {
                 rh = Math.round(Math.random() * 10); drawLine(rh, 30, 30, 30, x, y);
                 rh -= Math.round(Math.random() * 5); drawLine(rh, 100, 100, 100, x, y);
                 rh = Math.round(Math.random() * 1); drawLine(rh, 30, 200, 30, x, y-1);
@@ -81,6 +97,7 @@ function Generate(){
                 //ctx.lineWidth = ".5";
                 //ctx.rect(x, y, 1, 1); ctx.stroke();
 
+                
                 break;
             }
             
