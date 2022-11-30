@@ -46,15 +46,45 @@
             </tr>
           </table>
         </div>
-        <p>
-          Grid of options, usually two. Example: Fruits vs Vegetables on the Y axis and Big Homes vs Small Homes on the X axis.
-        </p>
+        <br>
+        <div class="UIlist" id="UIlist">
+          <div>
+            <table><td><input type="text" value="Fruits"></td><td><input type="text" value="Vegetables"></td><td><button class="UIlistBtn" onclick="removeItem();">-</button></td></table>
+          </div>
+          <div>
+            <table><td><input type="text" value="Big Houses"></td><td><input type="text" value="Small Houses"></td><td><button class="UIlistBtn" onclick="removeItem();">-</button></td></table>
+          </div>
+          <div>
+            <table><td><button class="UIlistBtn" onclick="addItem();">+</button></td></table>
+          </div>
+
+        </div>
     </div>
     
   </div>
 </body>
 
 <div id="global-page-footer"></div>
+
+<script id="UIlist">
+  list = document.getElementById("UIlist")
+  function addItem(){
+    len = list.children.length;
+    list.children[len-1].insertAdjacentHTML("beforebegin", `<div><table><td><input type="text" value="NewItem"></td><td><input type="text" value="NewItem"></td><td><button class="UIlistBtn" onclick="removeItem();">-</button></td></table></div>`);
+    reloadCss();
+  }
+
+  function reloadCss()
+{
+    var links = document.getElementsByTagName("link");
+    for (var cl in links)
+    {
+        var link = links[cl];
+        if (link.rel === "stylesheet")
+            link.href += "";
+    }
+}
+</script>
 
 <script src="page.js"></script>
 </html>

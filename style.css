@@ -77,8 +77,35 @@ p a :visited {
     color: #1479af;
 }
 
-
-
+.UIlist {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 20px;
+    align-items: center;
+    width: 100%;
+    border: solid 1px #363636;
+    border-radius: 4px;
+}
+.UIlist div table {
+    width: 100%;
+    border-collapse: separate;
+    background-color: #e8e8e8;
+    border: solid 1px #363636;
+    table-layout:fixed;
+}
+.UIlist div table td {
+    text-align: center;
+}
+.UIlist div table td:last-of-type{
+    text-align: center;
+    width: 30px;
+}
+.UIList input[type=text] {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 20px;
+    background-color: rgba(54, 54, 54, 0);
+    border: 0px hidden;
+    text-align: center;
+}
 .box {
     background-color: white;
     border-radius: 15px;
