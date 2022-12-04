@@ -41,7 +41,39 @@
       </p>
     </div>
 
-    
+    <div class="post">
+      <div class="postHead">
+        <table>
+          <tr>
+          <td><p style="text-align: left;">Terrain Generation</p></td>
+          <td><p style="text-align: right;">December 3rd, 2022</p></td>
+          </tr>
+        </table>
+      </div>
+      <br>
+      <img src="terrain.png" >
+      <br>
+      <p>
+        So today I decided to make a terrain generator to aid in the creation of terrain art for a video game.
+        About ten hours in, and I have the most basic generation, and no way of saving it as an image file.
+        <br><br>
+        First I tried using an HTML canvas, but that didn't quite work for setting the color of specific pixels,
+        so I moved on to using a table, which I hoped would make things easier. It did, ...and it didn't.
+        Setting the color of any said pixel during generation was quite simple, but using a table has its setbacks:
+        <br><br>
+        First of all, it doesn't scale as nicely as a canvas would, the individual cells end up being taller than
+        they are wide, so the only way to maintain that is to leave the width and height of each cell zero...
+        Well actually, if the width/height is zero, then the cells are only showing up at all because of the padding,
+        so if I set the padding to half the width I want each cell to be... YES! Problem solved. (Gee, why didn't I think of that earlier?)
+        <br><br>
+        Secondly, using a table isn't image based and therefore more difficult to save as an image. Later I'll write
+        something that writes all the table colors to an image. Which, I mean that's the thing I was avoiding by 
+        using tables in the first place.....
+        <br><br>
+        Anyways, a link to the tool is below if you want to check it out.
+      </p>
+      <button class="ViewPostBtn" onclick="window.location.href='terrainGenerator.html';">Terrain Generator</button>
+    </div>
 
     <div class="post">
       <div class="postHead">

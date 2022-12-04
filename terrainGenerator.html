@@ -7,6 +7,7 @@
 
 <div id="global-page-header"></div>
 
+
 <body>
   <div class="box">
     <div class="box-header">
@@ -21,12 +22,23 @@
       <div class="postHead">
         <table>
           <tr>
-          <td><p style="text-align: left; cursor: pointer;" onclick="Generate();">Output</p></td>
-          <td><p style="text-align: right;">Select Image</p><input type="file" id="Img2TxtUpload" name="Img2TxtUpload"></td>
+          <td><div style="border: solid 2px black; border-radius: 5px;"><p style="text-align: left; cursor: pointer;" onclick="Generate(Math.round(document.getElementById('width').value), Math.round(document.getElementById('height').value), document.getElementById('scale').value);">Output</p></div></td>
+          <td>Width: <input type="number" id="width" value="80"></td>
+          <td>Height: <input type="number" id="height" value="10"></td>
+          <td>Scale: <input type="number" id="scale" value="5"></td>
           </tr>
         </table>
       </div>
-      <canvas id="MainCanvas" width="450px"></canvas>
+      <!--<canvas id="MainCanvas" width="60px" style="image-rendering: crisp-edges;"></canvas>-->
+      <div style="text-align: center;">
+        <table id="imgTable" style="table-layout: fixed;"></table>
+      </div>
+      
+      
+      <style>
+        #imgTable tbody tr td {background-color: rgb(255, 255, 255); padding: 2.5px;}
+        #imgTable {border-spacing: 0px; resize: none;}
+      </style>
     </div>
     
   </div>
@@ -35,7 +47,7 @@
 <div id="global-page-footer"></div>
 
 <script>
-    document.getElementById("Img2TxtUpload").onchange = function(evt) {
+/*    document.getElementById("Img2TxtUpload").onchange = function(evt) {
   var tgt = evt.target || window.event.srcElement,
       files = tgt.files;
 
@@ -50,24 +62,40 @@
 
     //document.getElementById("imageDisplay").style = "display: block;";
   }
-};
+};*/
 
-var canvas = document.getElementById("MainCanvas");
-var ctx = canvas.getContext("2d");
+//var canvas = document.getElementById("MainCanvas");
+//var ctx = canvas.getContext("2d");
 
-function Generate(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+//canvas.style.width = '300px'
+
+
+
+function Generate(width, height, scale){
+    //ctx.clearRect(0, 0, canvas.width, canvas.height);
+    createGrid(width, height);
 
     //Generate terrain Shape
     var h = 0;
     var hc = 0;
-    for(let x = 1; x < canvas.width; x++) {
-      h += Math.random() * 0.07;
-      hc += Math.random() * 0.1;
-      y = Math.sin(h) * 10 + Math.sin(hc) * 10 + 50;
-      drawLine(canvas.height - y, 0, 0, 0, x, y);
-      //console.log(y);
+    for(let x = 1; x < width; x++) {
+      h += Math.random() * 0.07 * scale;
+      hc += Math.random() * 0.1 * scale;
+      y = Math.sin(h) + Math.sin(hc);
+      y = y/3 * (height/3) + (height/2)
+
+      yi = Math.round(y);
+
+      for(y = yi; y - 1 < height; y++) {
+        setPixel(x, y, 0, 0, 0);
+      }
+      for(y = yi; y < Math.round(Math.random() * 3) + 1 + yi; y++) {
+        setPixel(x, y, 35, 120, 30);
+      }
+
     }
+
+    return
 
     //Colorize
 
@@ -80,37 +108,55 @@ function Generate(){
 
     for(var x = 1; x < canvas.width; x++) {
         for(var y = 1; y < canvas.height; y++) {
-            var r = ctx.getImageData(x,y,1,1).data[0];
-            var g = ctx.getImageData(x,y,1,1).data[1];
-            var b = ctx.getImageData(x,y,1,1).data[2];
-
-            avg = (r + g + b) / 3;
-            console.log(avg);
-
-            if(avg > 100) {
-                rh = Math.round(Math.random() * 10); drawLine(rh, 30, 30, 30, x, y);
-                rh -= Math.round(Math.random() * 5); drawLine(rh, 100, 100, 100, x, y);
-                rh = Math.round(Math.random() * 1); drawLine(rh, 30, 200, 30, x, y-1);
-
-                //setPixel(x, y, 00, 255, 00);
-                //ctx.strokeStyle = "red";
-                //ctx.lineWidth = ".5";
-                //ctx.rect(x, y, 1, 1); ctx.stroke();
-
-                
-                break;
-            }
-            
+          
+          if(img.getPixel(x, y) == new THREE.Vector3(0,0,0)) {
+            var color = new THREE.Vector3(10, 200, 40);
+            img.setPixel(x, y, color)
+            //rh = Math.round(Math.random() * 10); drawLine(rh, 30, 30, 30, x, y);
+          }
         }
     }
 
 }
 
-function drawLine(hr, r, g, b, x, y) {
-    ctx.strokeStyle = "rgba(" + r + "," + g + "," + b + ", 255)";
-    ctx.lineWidth = "1";
-    ctx.rect(x, y, 1, hr); ctx.stroke();
+function createGrid(x, y) {
+  tbl = document.getElementById('imgTable');
+  tbl.innerHTML = '';
+
+  for (let i = 0; i < y; i++) {
+    const tr = tbl.insertRow();
+    for (let j = 0; j < x; j++) {
+        tr.insertCell();
+    }
+  }
 }
+
+function getPixel(x, y) {
+  x--;y--;o=4;c=[0,0,0];
+  cell = document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor;
+
+  for(j = 0; j < 3; j++) {
+    var i = 0;
+    var subs = "";
+    while(subs != "," && subs != ")" && cell != "") {
+      i++
+      subs = cell.substr(o + i, 1);
+    }
+    if(cell == '') {r=0; g=0; b=0;}
+
+    console.log(cell.substr(o, i));
+    c[j] = parseInt(cell.substr(o, i))
+    o += i + 1;
+  }
+
+  return c;
+}
+
+function setPixel(x, y, r, g, b) {
+  x--;y--;
+  document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+}
+
 </script>
 
 

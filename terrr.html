@@ -1,0 +1,76 @@
+<table id="imgTable" style="table-layout: fixed;">
+
+</table>
+
+<style>
+    #imgTable tbody tr {background-color: rgb(255, 255, 255);}
+    #imgTable tbody tr td {background-color: rgb(255, 255, 255);}
+    #imgTable {border-spacing: 0px; resize: none; transform: scale(5) translate(50%, 20px);}
+
+  </style>
+
+<script>
+    function Generate(width, height, scale){
+        //ctx.clearRect(0, 0, canvas.width, canvas.height);
+        createGrid(width, height);
+    
+        //Generate terrain Shape
+        var h = 0;
+        var hc = 0;
+        for(let x = 1; x < width; x++) {
+          h += Math.random() * 0.07 * scale;
+          hc += Math.random() * 0.1 * scale;
+          y = Math.sin(h) + Math.sin(hc);
+          y = y/3 * (height/3) + (height/2)
+    
+          yi = Math.round(y);
+    
+          for(y = yi; y - 1 < height; y++) {
+            setPixel(x, y, 0, 0, 0);
+          }
+          for(y = yi; y < Math.round(Math.random() * 3) + 1 + yi; y++) {
+            setPixel(x, y, 35, 120, 30);
+          }
+    
+        }
+    }
+    
+    function createGrid(x, y) {
+      tbl = document.getElementById('imgTable');
+      tbl.innerHTML = '';
+    
+      for (let i = 0; i < y; i++) {
+        const tr = tbl.insertRow();
+        for (let j = 0; j < x; j++) {
+            tr.insertCell();
+        }
+      }
+    }
+    
+    function getPixel(x, y) {
+      x--;y--;o=4;c=[0,0,0];
+      cell = document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor;
+    
+      for(j = 0; j < 3; j++) {
+        var i = 0;
+        var subs = "";
+        while(subs != "," && subs != ")" && cell != "") {
+          i++
+          subs = cell.substr(o + i, 1);
+        }
+        if(cell == '') {r=0; g=0; b=0;}
+    
+        console.log(cell.substr(o, i));
+        c[j] = parseInt(cell.substr(o, i))
+        o += i + 1;
+      }
+    
+      return c;
+    }
+    
+    function setPixel(x, y, r, g, b) {
+      x--;y--;
+      document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+    }
+    
+    </script>
