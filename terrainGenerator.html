@@ -22,27 +22,27 @@
       <div class="postHead">
         <table>
           <tr>
-          <td><div style="border: solid 2px black; border-radius: 5px;"><p style="text-align: left; cursor: pointer;" onclick="Generate(Math.round(document.getElementById('width').value), Math.round(document.getElementById('height').value), document.getElementById('scale').value);">Output</p></div></td>
-          <td>Width: <input type="number" id="width" value="80"></td>
-          <td>Height: <input type="number" id="height" value="10"></td>
-          <td>Scale: <input type="number" id="scale" value="5"></td>
-          </tr>
+          <tr>Width: <input type="number" id="width" value="80" onchange="QGenerate();"></td><br>
+          <tr>Height: <input type="number" id="height" value="30" onchange="QGenerate();"></td><br>
+          <tr>X-Scale: <input type="number" id="scale" value="5" onchange="QGenerate();"></td><br>
+          <tr>Y-Scale: <input type="number" id="yscale" value="3" onchange="QGenerate();"></td><br>
+          <tr><td><button onclick="QGenerate();">Generate</button></td><td><button onclick="saveImage();">Download Image</button></td></tr>
         </table>
       </div>
-      <!--<canvas id="MainCanvas" width="60px" style="image-rendering: crisp-edges;"></canvas>-->
-      <div style="text-align: center;">
+      <div style="text-align: center;" id="imgTableCont">
         <table id="imgTable" style="table-layout: fixed;"></table>
       </div>
       
-      
       <style>
-        #imgTable tbody tr td {background-color: rgb(255, 255, 255); padding: 2.5px;}
-        #imgTable {border-spacing: 0px; resize: none;}
+        #imgTable tbody tr td {background-color: rgb(83, 125, 189);}
+        #imgTable {border-spacing: 0px;}
       </style>
     </div>
     
   </div>
 </body>
+
+<canvas id="canvas" style="display: none;"></canvas>
 
 <div id="global-page-footer"></div>
 
@@ -69,11 +69,67 @@
 
 //canvas.style.width = '300px'
 
+function saveImage() {
+  width = document.getElementById('width').value;
+  height = document.getElementById('height').value;
+  img = new Image(width, height);
+  let canvas = document.getElementById('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  var ctx = canvas.getContext("2d");
+
+  var imgDat = ctx.getImageData(0,0,width,height);
+  var rgb = [0,0,0];
+
+  for(let x = 1; x < width-1; x++) {
+    for(let y = 1; y < height-1; y++) {
+      rgb = getPixel(x, y);
+      console.log(getPixel(x, y)[0], getPixel(x, y)[1], getPixel(x, y)[2]);
+      let pix = (x + y*width) * 4;
+      //imgDat.push(getPixel(x, y)[1], getPixel(x, y)[1], getPixel(x, y)[2], 255);
+      imgDat.data[pix] = getPixel(x, y)[0];
+      imgDat.data[pix + 1] = getPixel(x, y)[1];
+      imgDat.data[pix + 2] = getPixel(x, y)[2];
+      imgDat.data[pix + 3] = 255;
+    }
+  }
+  console.log(imgDat);
+
+  ctx.putImageData(imgDat, 0, 0);
+
+// Convert the canvas to data
+var image = canvas.toDataURL();
+// Create a link
+var aDownloadLink = document.createElement('a');
+// Add the name of the file to the link
+aDownloadLink.download = 'generated_terrain.png';
+// Attach the data to the link
+aDownloadLink.href = image;
+// Get the code to click the download link
+aDownloadLink.click();
+}
 
 
-function Generate(width, height, scale){
+function QGenerate(){
+  Generate(Math.round(document.getElementById('width').value), Math.round(document.getElementById('height').value), document.getElementById('scale').value, document.getElementById('yscale').value);
+}
+function Generate(width, height, scale, yscale){
+  //padd = 3
+  //document.getElementById("imgTable").querySelectorAll('td').forEach(resize);
+
+  //changeCSSStyle('#imgTable tbody tr td', 'padding', '1');
+  createGrid(width, height);
+  padd = document.getElementById("imgTableCont").getBoundingClientRect().width/width;
+  for(let x = 0; x < width; x++) {
+    for(let y = 0; y < height; y++) {
+      document.getElementById("imgTable").rows[y].cells[x].style.padding = "" + padd /2 + "px";
+      document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor = "rgb(255,255,255)";
+    }
+  }
+  
+
     //ctx.clearRect(0, 0, canvas.width, canvas.height);
-    createGrid(width, height);
+    
 
     //Generate terrain Shape
     var h = 0;
@@ -82,16 +138,25 @@ function Generate(width, height, scale){
       h += Math.random() * 0.07 * scale;
       hc += Math.random() * 0.1 * scale;
       y = Math.sin(h) + Math.sin(hc);
-      y = y/3 * (height/3) + (height/2)
+      y = (1 / yscale) * (y/3 * (height/3)) + (height/2)
 
       yi = Math.round(y);
 
       for(y = yi; y - 1 < height; y++) {
         setPixel(x, y, 0, 0, 0);
       }
-      for(y = yi; y < Math.round(Math.random() * 3) + 1 + yi; y++) {
-        setPixel(x, y, 35, 120, 30);
+      gheight = Math.round(Math.random() * 3)
+      for(y = yi; y < gheight + 1 + yi; y++) {
+        setPixel(x, y, 35, 120 + Math.random() * 20, 30);
       }
+      setPixel(x, gheight + yi + 1, 100, 70, 50);
+      setPixel(x, gheight + yi + 2, 100, 70, 50);
+      setPixel(x, gheight + yi + 3, 70, 40, 30);
+      setPixel(x, gheight + yi + 4, 70, 40, 30);
+      setPixel(x, gheight + yi + 5, 40, 25, 20);
+      setPixel(x, gheight + yi + 6, 40, 25, 20);
+      setPixel(x, gheight + yi + 7, 15, 8, 6);
+      setPixel(x, gheight + yi + 8, 15, 8, 6);
 
     }
 
@@ -142,19 +207,25 @@ function getPixel(x, y) {
       i++
       subs = cell.substr(o + i, 1);
     }
-    if(cell == '') {r=0; g=0; b=0;}
+    if(cell == '' || cell == 'NaN') {r=0; g=0; b=0;}
 
-    console.log(cell.substr(o, i));
+    //console.log(cell.substr(o, i));
     c[j] = parseInt(cell.substr(o, i))
     o += i + 1;
   }
+
+  if(c[0] == NaN) {c[0] = 0;}
+  if(c[1] == NaN) {c[1] = 0;}
+  if(c[2] == NaN) {c[2] = 0;}
 
   return c;
 }
 
 function setPixel(x, y, r, g, b) {
   x--;y--;
-  document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+  if(x+1 > Math.round(document.getElementById('width').value) || y+1 > Math.round(document.getElementById('height').value) || x < 0 || y < 0){}else{
+    document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+  }
 }
 
 </script>
