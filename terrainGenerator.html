@@ -210,7 +210,7 @@ function getPixel(x, y) {
     if(cell == '' || cell == 'NaN') {r=0; g=0; b=0;}
 
     //console.log(cell.substr(o, i));
-    c[j] = parseInt(cell.substr(o, i))
+    c[j] = parseFloat(cell.substr(o, i))
     o += i + 1;
   }
 
