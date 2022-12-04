@@ -90,7 +90,7 @@ function saveImage() {
       imgDat.data[pix] = getPixel(x, y)[0];
       imgDat.data[pix + 1] = getPixel(x, y)[1];
       imgDat.data[pix + 2] = getPixel(x, y)[2];
-      imgDat.data[pix + 3] = 255;
+      imgDat.data[pix + 3] = getPixel(x, y)[3];
     }
   }
   console.log(imgDat);
@@ -123,7 +123,7 @@ function Generate(width, height, scale, yscale){
   for(let x = 0; x < width; x++) {
     for(let y = 0; y < height; y++) {
       document.getElementById("imgTable").rows[y].cells[x].style.padding = "" + padd /2 + "px";
-      document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor = "rgb(255,255,255)";
+      document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor = "rgba(255,255,255,0)";
     }
   }
   
@@ -197,10 +197,10 @@ function createGrid(x, y) {
 }
 
 function getPixel(x, y) {
-  x--;y--;o=4;c=[0,0,0];
+  x--;y--;o=5;c=[0,0,0,0];
   cell = document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor;
 
-  for(j = 0; j < 3; j++) {
+  for(j = 0; j < 4; j++) {
     var i = 0;
     var subs = "";
     while(subs != "," && subs != ")" && cell != "") {
@@ -217,6 +217,7 @@ function getPixel(x, y) {
   if(c[0] == NaN) {c[0] = 0;}
   if(c[1] == NaN) {c[1] = 0;}
   if(c[2] == NaN) {c[2] = 0;}
+  if(c[3] == NaN) {c[3] = 0;}
 
   return c;
 }
