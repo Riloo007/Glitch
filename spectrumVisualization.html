@@ -28,8 +28,8 @@
         This is an html implementation of a method used to visialize and estimate voting results using a spectrum
         between two different ideas.
       </p>
-      <div>
-        <img src="PoliticalSpectrum.svg">
+      <div style="text-align: center;">
+        <img src="PoliticalSpectrum.svg" style="max-width: 500px;">
         <p class="imageText">
             An example of the concept. Credit: vox.com
         </p>
@@ -84,21 +84,26 @@
 
 function listOppositions() {
   var inputList = list.getElementsByTagName('input');
+  list = [0]
+  list.length = inputList.length;
   for(let i = 0; i < inputList.length; i++) {
-    console.log(inputList[i].value);
+    list[i] = inputList[i].value;
+    //console.log(inputList[i].value);
   }
+
+  return list;
 }
 
 function drawGrid(axes) {
   canvas = document.getElementById("spectrumVisualizer");
   var ctx = canvas.getContext("2d");
 
-  axes *= 2;
+  //axes *= 2;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  for(i = 1; i < axes; i += 2 * Math.PI / axes) {
+  for(i = 0; i < 2 * Math.PI; i += Math.PI / axes) {
     ctx.fillRect(Math.sin(i) * 50 + 150, Math.cos(i) * 50 + 150, 4, 4);
-    console.log(Math.sin(i));
+    console.log(i);
   }
   return
 
