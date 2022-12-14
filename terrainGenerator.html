@@ -32,6 +32,16 @@
       <div style="text-align: center;" id="imgTableCont">
         <table id="imgTable" style="table-layout: fixed;"></table>
       </div>
+
+      <div class="UIlist" id="UIlist">
+        <div>
+          <table><td><input type="color"></td><td><input type="value" value="2"></td><td><button class="UIlistBtn" onclick="removeItem(this);">-</button></td></table>
+        </div>
+        <div>
+          <table><td><button class="UIlistBtn" onclick="addItem();">+</button></td></table>
+        </div>
+
+      </div>  
       
       <style>
         #imgTable tbody tr td {background-color: rgb(83, 125, 189);}
@@ -47,27 +57,40 @@
 <div id="global-page-footer"></div>
 
 <script>
-/*    document.getElementById("Img2TxtUpload").onchange = function(evt) {
-  var tgt = evt.target || window.event.srcElement,
-      files = tgt.files;
+  const list = document.getElementById("UIlist");
+  function addItem(){
+    len = list.children.length;
+    list.children[len-1].insertAdjacentHTML("beforebegin", `
+      <div>
+        <table>
+          <td><input type="color"></td>
+          <td><input type="value" value="2"></td>
+        
+        <td>
+          <select onchange='toggleFixedRandom(this);'>
+            <option value="1">Fixed</option>
+            <option value="2">Random</option>
+          </select>
+        </td>
 
-  if(FileReader && files && files.length) {
-    var fr = new FileReader();
-    fr.onload = function () {
-      document.getElementById("imageDisplay").src = fr.result;
-
-
-    }
-    fr.readAsDataURL(files[0]);
-
-    //document.getElementById("imageDisplay").style = "display: block;";
+        <td>
+          <button class="UIlistBtn" onclick="removeItem(this);">-</button>
+        </td>
+        
+        
+        </table>
+      </div>`);
   }
-};*/
 
-//var canvas = document.getElementById("MainCanvas");
-//var ctx = canvas.getContext("2d");
+  function toggleFixedRandom(dat) {
+    if(dat.value == 2) {console.log("Random"); ExtraInput = "<td><input type=\'value\' value=\'2\'></td>"; dat.parentElement.insertAdjacentHTML("beforebegin", ExtraInput)}
+    else {console.log("Fixed"); dat.parentElement.parentElement.getElementsByTagName('input')[1].remove();}
+  }
 
-//canvas.style.width = '300px'
+  function removeItem(ref) {
+  console.log(ref.parentElement.parentElement.parentElement.parentElement.parentElement.innerHTML);
+  ref.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
+}
 
 function saveImage() {
   width = document.getElementById('width').value;
@@ -131,10 +154,29 @@ function Generate(width, height, scale, yscale){
 
       yi = Math.round(y);
 
+      //Fill terrain shape
       for(y = yi; y - 1 < height; y++) {
         setPixel(x, y, 0, 0, 0, 255);
       }
-      gheight = Math.round(Math.random() * 3)
+
+      //Draw each layer
+      const listDivs = list.getElementsByTagName('div');
+      var drHeight = 0;
+      for(li = 0; li < listDivs.length - 1; li++) {
+        inVal = listDivs[li].getElementsByTagName('input');
+        const r = parseInt(inVal[0].value.substr(1,2), 16)
+        const g = parseInt(inVal[0].value.substr(3,2), 16)
+        const b = parseInt(inVal[0].value.substr(5,2), 16)
+
+        //console.log(inVal[1].value, drHeight);
+        
+        for(y = 0; y < inVal[1].value; y++) {
+          setPixel(x, y + yi + drHeight, r, g, b, 255);
+          console.log(y + yi + drHeight);
+        }drHeight += parseInt(inVal[1].value);
+      }
+
+      /* gheight = Math.round(Math.random() * 3)
       for(y = yi; y < gheight + 1 + yi; y++) {
         setPixel(x, y, 35, 120 + Math.random() * 20, 30, 255);
       }
@@ -145,7 +187,7 @@ function Generate(width, height, scale, yscale){
       setPixel(x, gheight + yi + 5, 40, 25, 20, 255);
       setPixel(x, gheight + yi + 6, 40, 25, 20, 255);
       setPixel(x, gheight + yi + 7, 15, 8, 6, 255);
-      setPixel(x, gheight + yi + 8, 15, 8, 6, 255);
+      setPixel(x, gheight + yi + 8, 15, 8, 6, 255);*/
 
     }
 
