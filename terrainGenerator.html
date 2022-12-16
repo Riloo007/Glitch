@@ -33,15 +33,171 @@
         <table id="imgTable" style="table-layout: fixed;"></table>
       </div>
 
-      <div class="UIlist" id="UIlist">
+      <!-- <div class="UIlist" id="UIlist">
         <div>
-          <table><td><input type="color"></td><td><input type="value" value="2"></td><td><button class="UIlistBtn" onclick="removeItem(this);">-</button></td></table>
+          <table>
+            <td><input type="color" value='#57AB44'></td>
+            <td><input type="value" value="2"></td>
+          
+          <td>
+            <select onchange='toggleFixedRandom(this);'>
+              <option value="1">Fixed</option>
+              <option value="2">Random</option>
+            </select>
+          </td>
+  
+          <td>
+            <button class="UIlistBtn" onclick="removeItem(this);">-</button>
+          </td>
+          
+          
+          </table>
         </div>
         <div>
           <table><td><button class="UIlistBtn" onclick="addItem();">+</button></td></table>
         </div>
+      </div> -->
 
-      </div>  
+      <div class="UIlist" id="UIlist">
+        <div>
+          <table>
+            <tbody><tr><td><input type="color" value="#57AB44"></td>
+            <td><input type="value" value="1"></td>
+          
+          <td><input type="value" value="4"></td><td>
+            <select onchange="toggleFixedRandom(this);" value="2">
+              <option value="1">Fixed</option>
+              <option value="2">Random</option>
+            </select>
+          </td>
+  
+          <td>
+            <button class="UIlistBtn" onclick="removeItem(this);">-</button>
+          </td>
+          
+          
+          </tr></tbody></table>
+        </div>
+        
+      <div>
+        <table>
+          <tbody><tr><td><input type="color" value="#3E8948"></td>
+          <td><input type="value" value="2"></td>
+        
+        <td>
+          <select onchange="toggleFixedRandom(this);">
+            <option value="1">Fixed</option>
+            <option value="2">Random</option>
+          </select>
+        </td>
+
+        <td>
+          <button class="UIlistBtn" onclick="removeItem(this);">-</button>
+        </td>
+        
+        
+        </tr></tbody></table>
+      </div>
+      <div>
+        <table>
+          <tbody><tr><td><input type="color" value='#34733C'></td>
+          <td><input type="value" value="2"></td>
+        
+        <td>
+          <select onchange="toggleFixedRandom(this);">
+            <option value="1">Fixed</option>
+            <option value="2">Random</option>
+          </select>
+        </td>
+
+        <td>
+          <button class="UIlistBtn" onclick="removeItem(this);">-</button>
+        </td>
+        
+        
+        </tr></tbody></table>
+      </div>
+      <div>
+        <table>
+          <tbody><tr><td><input type="color" value='#343434'></td>
+          <td><input type="value" value="1"></td>
+        
+        <td>
+          <select onchange="toggleFixedRandom(this);">
+            <option value="1">Fixed</option>
+            <option value="2">Random</option>
+          </select>
+        </td>
+
+        <td>
+          <button class="UIlistBtn" onclick="removeItem(this);">-</button>
+        </td>
+        
+        
+        </tr></tbody></table>
+      </div>
+      <div>
+        <table>
+          <tbody><tr><td><input type="color" value='#914F49'></td>
+          <td><input type="value" value="2"></td>
+        
+        <td><input type="value" value="3"></td><td>
+          <select onchange="toggleFixedRandom(this);" value="2">
+            <option value="1">Fixed</option>
+            <option value="2">Random</option>
+          </select>
+        </td>
+
+        <td>
+          <button class="UIlistBtn" onclick="removeItem(this);">-</button>
+        </td>
+        
+        
+        </tr></tbody></table>
+      </div>
+      <div>
+        <table>
+          <tbody><tr><td><input type="color" value='#733E39'></td>
+          <td><input type="value" value="2"></td>
+        
+        <td>
+          <select onchange="toggleFixedRandom(this);">
+            <option value="1">Fixed</option>
+            <option value="2">Random</option>
+          </select>
+        </td>
+
+        <td>
+          <button class="UIlistBtn" onclick="removeItem(this);">-</button>
+        </td>
+        
+        
+        </tr></tbody></table>
+      </div>
+      <div>
+        <table>
+          <tbody><tr><td><input type="color" value='#523340'></td>
+          <td><input type="value" value="2"></td>
+        
+        <td>
+          <select onchange="toggleFixedRandom(this);">
+            <option value="1">Fixed</option>
+            <option value="2">Random</option>
+          </select>
+        </td>
+
+        <td>
+          <button class="UIlistBtn" onclick="removeItem(this);">-</button>
+        </td>
+        
+        
+        </tr></tbody></table>
+      </div><div>
+          <table><tbody><tr><td><button class="UIlistBtn" onclick="addItem();">+</button></td></tr></tbody></table>
+        </div>
+      </div>
+
+
       
       <style>
         #imgTable tbody tr td {background-color: rgb(83, 125, 189);}
@@ -84,7 +240,7 @@
 
   function toggleFixedRandom(dat) {
     if(dat.value == 2) {console.log("Random"); ExtraInput = "<td><input type=\'value\' value=\'2\'></td>"; dat.parentElement.insertAdjacentHTML("beforebegin", ExtraInput)}
-    else {console.log("Fixed"); dat.parentElement.parentElement.getElementsByTagName('input')[1].remove();}
+    else {console.log("Fixed"); dat.parentElement.parentElement.getElementsByTagName('input')[1].parentElement.remove();}
   }
 
   function removeItem(ref) {
@@ -163,17 +319,30 @@ function Generate(width, height, scale, yscale){
       const listDivs = list.getElementsByTagName('div');
       var drHeight = 0;
       for(li = 0; li < listDivs.length - 1; li++) {
+
+
         inVal = listDivs[li].getElementsByTagName('input');
         const r = parseInt(inVal[0].value.substr(1,2), 16)
         const g = parseInt(inVal[0].value.substr(3,2), 16)
         const b = parseInt(inVal[0].value.substr(5,2), 16)
 
         //console.log(inVal[1].value, drHeight);
-        
-        for(y = 0; y < inVal[1].value; y++) {
+        //console.log(inVal.length);
+        if(inVal.length == 2) {
+          for(y = 0; y < inVal[1].value; y++) {
           setPixel(x, y + yi + drHeight, r, g, b, 255);
-          console.log(y + yi + drHeight);
+          //console.log(y + yi + drHeight);
         }drHeight += parseInt(inVal[1].value);
+        } else if(inVal.length == 3) {
+          RandHeight = getRandomInt(parseInt(inVal[1].value), parseInt(inVal[2].value));
+          console.log(RandHeight);
+          for(y = 0; y < RandHeight ; y++) {
+          setPixel(x, y + yi + drHeight, r, g, b, 255);
+          //console.log(y + yi + drHeight);
+        }drHeight += RandHeight;
+        }
+
+        
       }
 
       /* gheight = Math.round(Math.random() * 3)
@@ -213,6 +382,10 @@ function Generate(width, height, scale, yscale){
         }
     }
 
+}
+
+function getRandomInt(min, max) {
+  return Math.round(Math.random() * (max - min)) + min;
 }
 
 function createGrid(x, y) {
