@@ -51,6 +51,8 @@
         </p>
         <p class="code">
           ClrHome</br>startTmr</br>Disp &#8220;ENTER A NUMBER&#8220;</br>Prompt P</br>checkTmr(0)-&gt;T</br>int(P)-&gt;X</br>If P!=X</br>Goto 3</br>If P=1 or P&lt;=1</br>Goto 2</br>For(X,2,P-1)</br>	P/X-&gt;D</br>	Disp D</br>	D-&gt;O</br>	int(O)-&gt;O</br>	If D=O</br>	Goto 1</br>	If sqrt(P)&lt;X</br>	Goto 4</br>End</br>Lbl 4</br>Disp &#8220;&#8220;</br>Disp P</br>Disp &#8220;                  IS PRIME&#8220;</br>Disp &#8220;&#8220;</br>Disp &#8220;CALCULATED IN&#8220;</br>Disp checkTmr(0)-T</br>Disp &#8220;                 SECOND(S)&#8220;</br>Stop</br>Lbl 2</br>Disp &#8220;INT&lt;=1 NOT PRIME&#8220;</br>Stop</br>Lbl 3</br>Disp &#8220;DEC. NOT PRIME&#8220;</br>Stop</br>Lbl 1</br>Disp &#8220;&#8220;,P,&#8220;&sol;&#8220;,D,P&sol;D</br>Disp &#8220;NOT PRIME&#8220;</br>Stop
+        
+          </br><img src="isItPrime.gif" style="width: 320px;">
         </p>
         <p>
             I start by asking for a number, then dividing that number by every whole number up to itself. If every whole
