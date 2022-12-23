@@ -26,6 +26,7 @@
           <tr>Height: <input type="number" id="height" value="30" onchange="QGenerate();"></td><br>
           <tr>X-Scale: <input type="number" id="scale" value="5" onchange="QGenerate();"></td><br>
           <tr>Y-Scale: <input type="number" id="yscale" value="3" onchange="QGenerate();"></td><br>
+          <tr>Layer stop: <input type="number" id="layerStop" value="4" onchange="QGenerate();"></td><br>
           <tr><td><button onclick="QGenerate();">Generate</button></td><td><button onclick="saveImage();">Download Image</button></td></tr>
         </table>
       </div>
@@ -65,9 +66,9 @@
             <td><input type="value" value="1"></td>
           
           <td><input type="value" value="4"></td><td>
-            <select onchange="toggleFixedRandom(this);" value="2">
-              <option value="1">Fixed</option>
+            <select onchange="toggleFixedRandom(this);">
               <option value="2">Random</option>
+              <option value="1">Fixed</option>
             </select>
           </td>
   
@@ -139,14 +140,12 @@
       <div>
         <table>
           <tbody><tr><td><input type="color" value='#914F49'></td>
-          <td><input type="value" value="2"></td>
-        
-        <td><input type="value" value="3"></td><td>
-          <select onchange="toggleFixedRandom(this);" value="2">
-            <option value="1">Fixed</option>
-            <option value="2">Random</option>
-          </select>
-        </td>
+          <td><input type="value" value="4"></td><td>
+            <select onchange="toggleFixedRandom(this);">
+              <option value="1">Fixed</option>
+              <option value="2">Random</option>
+            </select>
+          </td>
 
         <td>
           <button class="UIlistBtn" onclick="removeItem(this);">-</button>
@@ -291,7 +290,7 @@ function QGenerate(){
 function Generate(width, height, scale, yscale){
   width++;height++;
   createGrid(width, height);
-  padd = document.getElementById("imgTableCont").getBoundingClientRect().width/width/2;
+  padd = document.getElementById("imgTableCont").getBoundingClientRect().width/(width-1)/2;
   for(let x = 0; x < width; x++) {
     for(let y = 0; y < height; y++) {
       document.getElementById("imgTable").rows[y].cells[x].style.padding = "" + padd + "px";
@@ -315,72 +314,45 @@ function Generate(width, height, scale, yscale){
         setPixel(x, y, 0, 0, 0, 255);
       }
 
-      //Draw each layer
+      //Draw each layer in UI List
       const listDivs = list.getElementsByTagName('div');
       var drHeight = 0;
       for(li = 0; li < listDivs.length - 1; li++) {
-
-
         inVal = listDivs[li].getElementsByTagName('input');
         const r = parseInt(inVal[0].value.substr(1,2), 16)
         const g = parseInt(inVal[0].value.substr(3,2), 16)
         const b = parseInt(inVal[0].value.substr(5,2), 16)
 
-        //console.log(inVal[1].value, drHeight);
-        //console.log(inVal.length);
         if(inVal.length == 2) {
           for(y = 0; y < inVal[1].value; y++) {
-          setPixel(x, y + yi + drHeight, r, g, b, 255);
-          //console.log(y + yi + drHeight);
-        }drHeight += parseInt(inVal[1].value);
-        } else if(inVal.length == 3) {
-          RandHeight = getRandomInt(parseInt(inVal[1].value), parseInt(inVal[2].value));
-          console.log(RandHeight);
-          for(y = 0; y < RandHeight ; y++) {
-          setPixel(x, y + yi + drHeight, r, g, b, 255);
-          //console.log(y + yi + drHeight);
-        }drHeight += RandHeight;
+            if(li <= document.getElementById('layerStop').value) {
+                setPixel(x, y + yi + drHeight, r, g, b, 255);
+              } else {
+                setPixel(x, y + yi + li * 2, r, g, b, 255);
+              }
+          }
+          drHeight += parseInt(inVal[1].value);
+          } else if(inVal.length == 3) {
+            RandHeight = getRandomInt(parseInt(inVal[1].value), parseInt(inVal[2].value));
+            //console.log(RandHeight);
+            for(y = 0; y < RandHeight ; y++) {
+              if(li <= document.getElementById('layerStop').value) {
+                setPixel(x, y + yi + drHeight, r, g, b, 255);
+              } else {
+                setPixel(x, y + yi + li * 2, r, g, b, 255);
+              }
+
+
+            }
+          drHeight += RandHeight;
         }
 
         
       }
 
-      /* gheight = Math.round(Math.random() * 3)
-      for(y = yi; y < gheight + 1 + yi; y++) {
-        setPixel(x, y, 35, 120 + Math.random() * 20, 30, 255);
-      }
-      setPixel(x, gheight + yi + 1, 100, 70, 50, 255);
-      setPixel(x, gheight + yi + 2, 100, 70, 50, 255);
-      setPixel(x, gheight + yi + 3, 70, 40, 30, 255);
-      setPixel(x, gheight + yi + 4, 70, 40, 30, 255);
-      setPixel(x, gheight + yi + 5, 40, 25, 20, 255);
-      setPixel(x, gheight + yi + 6, 40, 25, 20, 255);
-      setPixel(x, gheight + yi + 7, 15, 8, 6, 255);
-      setPixel(x, gheight + yi + 8, 15, 8, 6, 255);*/
-
     }
 
     return
-
-    //Colorize
-
-    var yi = 0
-    
-    //var img = document.getElementById('imageDisplay');
-    //ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //ctx.drawImage(img, 0, 0, img.width, img.height);
-    ctx.getContextAttributes().willReadFrequently = true;
-
-    for(var x = 1; x < canvas.width; x++) {
-        for(var y = 1; y < canvas.height; y++) {
-          
-          if(img.getPixel(x, y) == new THREE.Vector3(0,0,0)) {
-            var color = new THREE.Vector3(10, 200, 40);
-            img.setPixel(x, y, color)
-            //rh = Math.round(Math.random() * 10); drawLine(rh, 30, 30, 30, x, y);
-          }
-        }
-    }
 
 }
 
@@ -401,23 +373,16 @@ function createGrid(x, y) {
 }
 
 function getPixel(x, y) {
-  //x--;y--;
-  //c=[0,0,0,0];
   cell = document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor;
 
   var c = cell.replace(/^rgba?\(|\s+|\)$/g,'').split(',');
-  
-
   if(c.length == 3) {c.push('255');}
-  //console.log(c);
 
   return c
 }
 
 function setPixel(x, y, r, g, b, a) {
   x--;y--;
-  //console.log(r,g,b,a); 
- // if(a == null) {a = 255;}
   if(x+1 > Math.round(document.getElementById('width').value) || y+1 > Math.round(document.getElementById('height').value) || x < 0 || y < 0){}else{
     document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor = "rgba(" + r + "," + g + "," + b + "," + 1 + ")";
   }
