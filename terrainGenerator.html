@@ -258,10 +258,9 @@ function saveImage() {
   var ctx = canvas.getContext("2d");
 
   var imgDat = ctx.getImageData(0,0,width,height);
-  //var rgb = [0,0,0,0];
 
-  for(let x = 1; x < width-1; x++) {
-    for(let y = 1; y < height-1; y++) {
+  for(let x = 0; x < width; x++) {
+    for(let y = 0; y < height; y++) {
       let pix = (x + y*width) * 4;
       imgDat.data[pix] = getPixel(x, y)[0];
       imgDat.data[pix + 1] = getPixel(x, y)[1];
@@ -290,6 +289,7 @@ function QGenerate(){
   Generate(Math.round(document.getElementById('width').value), Math.round(document.getElementById('height').value), document.getElementById('scale').value, document.getElementById('yscale').value);
 }
 function Generate(width, height, scale, yscale){
+  width++;height++;
   createGrid(width, height);
   padd = document.getElementById("imgTableCont").getBoundingClientRect().width/width/2;
   for(let x = 0; x < width; x++) {
@@ -401,7 +401,7 @@ function createGrid(x, y) {
 }
 
 function getPixel(x, y) {
-  x--;y--;
+  //x--;y--;
   //c=[0,0,0,0];
   cell = document.getElementById("imgTable").rows[y].cells[x].style.backgroundColor;
 
