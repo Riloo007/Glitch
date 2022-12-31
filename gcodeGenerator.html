@@ -1,6 +1,7 @@
 <html>
     <div style="outline: solid 3px #474747; padding: 4px; font-family: 'Courier New', Courier, monospace;" id="Input">
-        GCode header: <textarea id="Header" style="width: 100%; height: 100px;">G21 ; mm-mode
+        GCode header: <textarea id="Header" style="width: 100%; height: 100px;">F400 ; Speed
+G21 ; mm-mode
 G54; Work Coordinates
 G21; mm-mode
 G90; Absolute Positioning
@@ -21,11 +22,17 @@ M5 S0; Spindle Off</textarea> <br><br>
         <button onclick="Generate();">Generate</button><br><br>
     </div>
 
-    <div style="outline: solid 3px #474747; padding: 4px;" id="Output">
+    <div style="outline: solid 3px #474747; padding: 4px;" id="Loader">
     
     </div>
 </html>
 
+<style>
+    #loader {
+        width: 0px;
+        /**transition-duration: 2s;**/
+    }
+</style>
 
 <script>
 var clearId;
@@ -45,6 +52,29 @@ document.getElementById("IMGFile").onchange = function(evt) {
     clearID = setInterval(updateAR, 500);
 };
 
+var progressBarValue = 0;
+
+function CSSTEST() {
+    bar = document.getElementById("Loader")
+        
+    
+    const i = 100000;
+    for(x=0;x<i;x++) {
+        setTimeout(asyncLoop, 0);
+        console.log(progressBarValue);
+        progressBarValue = x/i*100;
+        //console.log(x/i);
+        //bar.style.width = x/i*100 + "%"
+        //$('#Loader').css({'width':(x/i*100)+'%'});
+    }
+    //clearInterval(sI);
+}
+
+function asyncLoop() {
+    document.getElementById("Loader").style.width = progressBarValue + "%";
+    //console.log("Ran");
+}
+
 function updateAR() {
     const img = document.getElementById('IMGDisplay');
     document.getElementById("mmWide").value = img.width;
@@ -57,8 +87,8 @@ document.getElementById("mmWide").onchange = function(evt) {
     const img = document.getElementById('IMGDisplay');
     const mmW = document.getElementById("mmWide").value;
     document.getElementById("mmHigh").value = mmW * img.height / img.width;
-    console.log("COmplete")
-}
+    console.log("Aspect ratio calculated");
+};
 
 document.getElementById("mmHigh").onchange = function(evt) {
     const img = document.getElementById('IMGDisplay');
@@ -85,10 +115,14 @@ function Generate() {
     console.log("Workspace Resolution (in steps): " + wwW + ", " + wwH);
 
     var Output = document.getElementById("Header").innerHTML;
+    var blobIndex = 0;
 
     for(let dlayeri = 1; dlayeri <= depth / maxCuttingDepth; dlayeri++) {
+        //console.log(Output);
+        //console.log("Layer " + dlayeri);
         for(let y = 0 ; y < wwH - 1; y += 1) {
-            for(let x = 0 ; x < wwW - 1; x += 1) {
+            console.log(Math.round(y/wwH*100) + "%");
+            for(let x = 1 ; x < wwW; x += 1) {
                 var wx = x / StepsPermm * pixInc; //Proper coordinate for Image
                 var wy = y / StepsPermm * pixInc; //
 
@@ -98,9 +132,11 @@ function Generate() {
                 var avg = (1 - ((d[0] + d[1] + d[2]) / (255 * 3))) * depth; // Invert: (1 - 1) is 0, so depth is zero; (1 - 0) is 1 so a depth of 1. Multiply by Maximum Depth
                 if(avg > dlayeri * maxCuttingDepth) {avg = maxCuttingDepth * dlayeri;}
                 //  4  >    7    *       0.5      
-
-                Output += "\nG0 F1000 X" + (wx / pixInc) + " Y" + (wy / pixInc) + " Z-" + avg + " S1000";
+                
+                Output += ("\nX" + (Math.round((wx / pixInc) * 1000)/1000) + "Z-" + (Math.round(avg * 1000)/1000));
+                //Output += "\nG0 F1000 X" + (wx / pixInc) + " Y" + (wy / pixInc) + " Z-" + avg + " S1000";
             }
+            Output += "\nY" + (Math.round((wy / pixInc) * 1000)/1000)
         }
         Output += "\n\n; Starting Layer " + (dlayeri + 1) + "\nG0 F700 Z2\nG0 F1000 X0Y0\nG0 Z0\n; Reset to 0, 0\n";
     }
@@ -122,5 +158,12 @@ function download(filename, text) {
   element.click();
 
   document.body.removeChild(element);
+}
+function OutSum(list){
+    var out = "";
+    for(i=0;i<list.length;i++) {
+        out += list[i];
+    }
+    return out;
 }
 </script>
