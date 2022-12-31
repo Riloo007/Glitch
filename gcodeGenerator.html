@@ -1,0 +1,126 @@
+<html>
+    <div style="outline: solid 3px #474747; padding: 4px; font-family: 'Courier New', Courier, monospace;" id="Input">
+        GCode header: <textarea id="Header" style="width: 100%; height: 100px;">G21 ; mm-mode
+G54; Work Coordinates
+G21; mm-mode
+G90; Absolute Positioning
+M3 S1000; Spindle On
+G0 Z1; move to z-safe height</textarea> <br><br>
+        GCode footer: <textarea id="Footer" style="width: 100%; height: 100px;">G0 Z1
+M5 S0; Spindle Off</textarea> <br><br>
+        Image Upload: <input type="file" id="IMGFile">  <br><br>
+        <img id="IMGDisplay" > <br><br>
+        <div style="outline: solid 2px #474747;"></div> <br>
+        Workspace Size (mm): <input type="number" id="mmWide"><input type="number" id="mmHigh"> <br>
+        Workspace Resolution (steps / mm): <input type="number" id="StepsPmm"> <br>
+        Final Depth (mm): <input type="number" id="FinalDepthmm"> <br>
+        Maximum Cutting Depth (mm): <input type="number" id="MaxmmDeep">
+        <br><br>
+
+        <div style="outline: solid 2px #474747;"></div> <br>
+        <button onclick="Generate();">Generate</button><br><br>
+    </div>
+
+    <div style="outline: solid 3px #474747; padding: 4px;" id="Output">
+    
+    </div>
+</html>
+
+
+<script>
+var clearId;
+
+document.getElementById("IMGFile").onchange = function(evt) {
+    const img = document.getElementById('IMGDisplay');
+    var tgt = evt.target || window.event.srcElement, files = tgt.files;
+
+    if(FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+        document.getElementById("IMGDisplay").src = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+    }
+
+    clearID = setInterval(updateAR, 500);
+};
+
+function updateAR() {
+    const img = document.getElementById('IMGDisplay');
+    document.getElementById("mmWide").value = img.width;
+    document.getElementById("mmHigh").value = img.height;
+    for(i=1;i<256;i++){clearInterval(i);}
+    
+}
+
+document.getElementById("mmWide").onchange = function(evt) {
+    const img = document.getElementById('IMGDisplay');
+    const mmW = document.getElementById("mmWide").value;
+    document.getElementById("mmHigh").value = mmW * img.height / img.width;
+    console.log("COmplete")
+}
+
+document.getElementById("mmHigh").onchange = function(evt) {
+    const img = document.getElementById('IMGDisplay');
+    const mmH = document.getElementById("mmHigh").value;
+    document.getElementById("mmWide").value = mmH * img.width / img.height;
+};
+
+function Generate() {
+    var img = document.getElementById('IMGDisplay');
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext("2d");
+    ctx.getContextAttributes().willReadFrequently = true;
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+
+    pixInc = img.width / document.getElementById("mmWide").value;
+    StepsPermm = document.getElementById("StepsPmm").value;
+    maxCuttingDepth = document.getElementById("MaxmmDeep").value;
+    depth = document.getElementById("FinalDepthmm").value;
+    var wwW = document.getElementById("mmWide").value * StepsPermm;
+    var wwH = document.getElementById("mmHigh").value * StepsPermm;
+
+    console.log("Workspace Resolution (in steps): " + wwW + ", " + wwH);
+
+    var Output = document.getElementById("Header").innerHTML;
+
+    for(let dlayeri = 1; dlayeri <= depth / maxCuttingDepth; dlayeri++) {
+        for(let y = 0 ; y < wwH - 1; y += 1) {
+            for(let x = 0 ; x < wwW - 1; x += 1) {
+                var wx = x / StepsPermm * pixInc; //Proper coordinate for Image
+                var wy = y / StepsPermm * pixInc; //
+
+                if(y/2 == Math.round(y/2)) {wx = img.width - wx;} //Invert direction on even numbers for efficient zigzag path
+
+                const d = ctx.getImageData(wx,wy,1,1).data
+                var avg = (1 - ((d[0] + d[1] + d[2]) / (255 * 3))) * depth; // Invert: (1 - 1) is 0, so depth is zero; (1 - 0) is 1 so a depth of 1. Multiply by Maximum Depth
+                if(avg > dlayeri * maxCuttingDepth) {avg = maxCuttingDepth * dlayeri;}
+                //  4  >    7    *       0.5      
+
+                Output += "\nG0 F1000 X" + (wx / pixInc) + " Y" + (wy / pixInc) + " Z-" + avg + " S1000";
+            }
+        }
+        Output += "\n\n; Starting Layer " + (dlayeri + 1) + "\nG0 F700 Z2\nG0 F1000 X0Y0\nG0 Z0\n; Reset to 0, 0\n";
+    }
+
+    Output += "\n" + document.getElementById("Footer").innerHTML;
+
+    download("GCode", Output);
+    //document.getElementById("Output").innerHTML = Output;
+}
+
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+</script>

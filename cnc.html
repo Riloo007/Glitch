@@ -1,0 +1,93 @@
+<html>
+<head>
+  <title>Glitch | CNC</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="logo.png">
+</head>
+
+<div id="global-page-header"></div>
+
+<body>
+  <div class="box">
+    <div class="box-header">
+      <h2>
+        CNC Machine
+      </h2>
+    </div>
+
+    <div class="post">
+        <div class="postHead">
+          <table>
+            <tr>
+            <td><p style="text-align: left;">First Week</p></td>
+            <td><p style="text-align: right;">December 30, 2022</p></td>
+            </tr>
+          </table>
+        </div>
+        <p>
+          The exact build and model of CNC Machine I got for Christmas is a Sainsmart (Power to the Makers) Genmitsu CNC Router.
+          Building it wasn't too difficult, and, eager to test it out, I had it built before lunch.<br><br>
+
+          <img src="cnc/machine.png">
+
+          The machine came with a small controller and SD card slot, so I was able to test out the controls right away. 
+          I was very Impressed with how accurate it could be. <br><br>
+          
+          Preloaded on the SD card were some GCode files. One of them was named "dragon.gc", which looked the most exciting.
+          When I tested it out on cardboard, it just started filling a big box. The file was built to carve wood, not cardboard.
+          
+          <br><br>
+          As a linux user, the Windows software that came with the machine didn't work, so I had to find other alternatives. So, I went searching for some software. I tested out a 
+          few various programs, and in the end settled on OpenBuilds CAM and CONTROLLER. The simple CAM browser interface makes it easy to 
+          position, scale, and edit shapes that can be sent to to the controller and sent to the machine. In the controller, it's 
+          easy to precisely position the drill and preview GCode.
+          
+          <br><br><img src="cnc/dog.jpg" style="width: 60%;"><br><br>
+          
+          A couple flaws with the software are the incapability of depth map importing and having a full 3D view of the drill path.
+          Today I wanted to carve the following image I found on the internet:
+
+          <br><br><img src="cnc/Knottt.png" style="width: 40%;"><br><br>
+
+          I tried separating the image into height layers using blender so I could import the resulting images into OpenBuilds and
+          carve it out layer by layer.
+
+          <br><br><img src="cnc/Knottt-Layers.png"><br><br>
+
+          This could have worked, but the process was tedious and the browser was becoming unusably slow after importing 3+ layers.
+          None of the software I had used thus far was suitable enough for my needs, so I created an html/javascript method that takes 
+          a depth map and directly generates the GCode that carves the image row by row.
+          
+            <div style="text-align: center;">
+                <img src="cnc/software01.png" style="width: 60%;">
+                <p class="imageText">OpenBuilds CAM loaded with five layers of the knot depth map</p>
+            </div>
+
+            <div style="text-align: center;">
+                <img src="cnc/software02.png" style="width: 60%;">
+                <p class="imageText">My own javascript for generating GCode from a depth map. Check it out <a href="gcodeGenerator.html">here</a>.</p>
+            </div><br><br>
+
+            At a low resolution, (2 steps/mm) the program produced this:
+
+            <br><br><img src="cnc/Knottt-Result.jpg" style="width: 70%;"><br><br>
+
+            A little further testing showed that at a resolution of 20 steps/mm, I could create this:
+
+            <br><br><img src="cnc/cnc02.jpg" style="width: 70%;"><br><br>
+
+
+        </p>
+      </div>
+
+
+
+    
+    
+  </div>
+</body>
+
+<div id="global-page-footer"></div>
+
+<script src="page.js"></script>
+</html>
