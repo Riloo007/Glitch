@@ -69,6 +69,9 @@ get("I2").oninput = function() {
     svg.getElementById('text-nostroke').querySelectorAll('*').forEach(node => {
         node.style.fill = c;
     });
+    svg.getElementById('Paths').querySelectorAll('*').forEach(node => {
+        node.style.fill = c;
+    });
 }
 
 get("I3").oninput = function() {
