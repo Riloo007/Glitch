@@ -66,7 +66,7 @@ get("I2").oninput = function() {
     svg.getElementById('Text').querySelectorAll('text').forEach(node => {
         node.style.fill = c;
     });
-    svg.getElementById('text-nostroke').children.forEach(node => {
+    svg.getElementById('text-nostroke').querySelectorAll('*').forEach(node => {
         node.style.fill = c;
     });
 }
