@@ -9,8 +9,8 @@
             text-align: center;
         }
         .img-container {
-            width: 80vh;
-            height: 80vh;
+            width: calc(100vh - 60px);
+            height: calc(100vh - 60px);
             padding: 20px;
             margin: auto;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.529);
@@ -61,13 +61,7 @@ get("I1").oninput = function() {
 
 get("I2").oninput = function() {
     const c = get('I2').value;
-    svg.getElementById('Text').querySelectorAll('tspan').forEach(node => {
-        node.style.fill = c;
-    });
-    svg.getElementById('Text').querySelectorAll('text').forEach(node => {
-        node.style.fill = c;
-    });
-    svg.getElementById('Text').querySelectorAll('path').forEach(node => {
+    svg.getElementById('Text').querySelectorAll('*').forEach(node => {
         node.style.fill = c;
     });
     svg.getElementById('text-nostroke').querySelectorAll('*').forEach(node => {
@@ -84,10 +78,7 @@ get("I3").oninput = function() {
         node.style.fill = c;
     });
 
-    svg.getElementById('Text').querySelectorAll('tspan').forEach(node => {
-        node.style.stroke = c;
-    });
-    svg.getElementById('Text').querySelectorAll('text').forEach(node => {
+    svg.getElementById('Text').querySelectorAll('*').forEach(node => {
         node.style.stroke = c;
     });
 }
