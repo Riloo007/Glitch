@@ -42,3 +42,58 @@
     </div>
 </body>
 </html>
+
+<script>
+function get(i) {return document.getElementById(i);}
+
+var svg;
+document.addEventListener("DOMContentLoaded", function() {
+    svg = document.getElementById('image').contentDocument;
+
+get("I1").oninput = function() {
+    const c = get('I1').value;
+    svg.getElementById('calc2023').style.fill = c;
+}
+
+get("I2").oninput = function() {
+    const c = get('I2').value;
+    svg.getElementById('Text').querySelectorAll('tspan').forEach(node => {
+        node.style.fill = c;
+    });
+    svg.getElementById('Text').querySelectorAll('text').forEach(node => {
+        node.style.fill = c;
+    });
+    svg.getElementById('text-nostroke').children.forEach(node => {
+        node.style.fill = c;
+    });
+}
+
+get("I3").oninput = function() {
+    const c = get('I3').value;
+    svg.getElementById('MainText').querySelectorAll('path').forEach(node => {
+        node.style.fill = c;
+    });
+
+    svg.getElementById('Text').querySelectorAll('tspan').forEach(node => {
+        node.style.stroke = c;
+    });
+    svg.getElementById('Text').querySelectorAll('text').forEach(node => {
+        node.style.stroke = c;
+    });
+}
+
+get("I4").oninput = function() {
+    const c = get('I4').value;
+    svg.getElementById('MainText').querySelectorAll('path').forEach(node => {
+        node.style.stroke = c;
+    });
+}
+
+get("I5").oninput = function() {
+    const c = get('I5').value;
+    svg.getElementById('background').style.fill = c;
+}
+
+});
+
+</script>
