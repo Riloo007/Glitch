@@ -48,7 +48,10 @@ function get(i) {return document.getElementById(i);}
 
 var svg;
 document.addEventListener("DOMContentLoaded", function() {
-    svg = document.getElementById('image').contentDocument;
+    setTimeout(function() {
+        svg = document.getElementById('image').contentDocument;
+    }, 500);
+    
 
 get("I1").oninput = function() {
     const c = get('I1').value;
