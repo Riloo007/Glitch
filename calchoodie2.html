@@ -53,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 get("I1").oninput = function() {
     const c = get('I1').value;
-    svg.getElementById('calc2023').style.fill = c;
-    svg.getElementById('calc2023').children[0].style.fill = c;
+    svg.getElementById('calc2023').querySelectorAll('*').forEach(node => {
+        node.style.stroke = c;
+    });
 }
 
 get("I2").oninput = function() {
