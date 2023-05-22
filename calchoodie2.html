@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>CalcHoodie - Edit</title>
+    <style>
+        .main{
+            display: flex;
+            text-align: center;
+        }
+        .img-container {
+            width: calc(100vh - 60px);
+            height: calc(100vh - 60px);
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.529);
+        }
+        .img-container object {
+            width: 100%;
+            height: 100%;
+        }
+        .settings {
+            margin: auto;
+            display: inline-flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="img-container">
+            <object id="image" type="image/svg+xml" data="template2.svg"></object>
+        </div>
+        <div class="settings">
+            <div>
+                <p>Title Color</p><input id="I1" type="color"><br>
+                <p>Logo Color</p><input id="I2" type="color"><br>
+                <p>Sweater Color</p><input id="I3" type="color"><br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+function get(i) {return document.getElementById(i);}
+
+var svg;
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() {
+        svg = document.getElementById('image').contentDocument;
+    }, 500);
+    
+
+get("I1").oninput = function() {
+    const c = get('I1').value;
+    svg.getElementById('calc2023').style.fill = c;
+    svg.getElementById('calc2023').children[0].style.fill = c;
+}
+
+get("I2").oninput = function() {
+    const c = get('I2').value;
+    svg.getElementById('logo').querySelectorAll('*').forEach(node => {
+        node.style.stroke = c;
+    });
+}
+
+get("I3").oninput = function() {
+    const c = get('I3').value;
+    svg.getElementById('background').style.fill = c;
+}
+
+});
+
+</script>
