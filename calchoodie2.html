@@ -98,7 +98,7 @@
                 <p>Title Color<br><input readonly id="I1" type="text" data-coloris></p><br>
                 <p>Logo Color<br><input readonly id="I2" type="text" data-coloris></p><br>
                 <p>Sweater Color<br><input readonly id="I3" type="text" data-coloris></p><br>
-                <button onclick="saveColor()">Like it ❤️</button>
+                <button onclick="randomizeColors()">Random 🎲</button><button onclick="saveColor()">Save ⬇</button>
 
                 <!--
 
@@ -235,6 +235,21 @@ Coloris({
     closeButton: true,
     closeLabel: '✅'
 })
+
+function randomizeColors() {
+    r = Math.round(Math.random() * 255);
+    g = Math.round(Math.random() * 255);
+    b = Math.round(Math.random() * 255);
+    get('I1').value = `rgb(${r},${g},${b})`;
+    get('I2').value = `rgb(${r},${g},${b})`;
+    get('I3').value = `rgb(${r},${g},${b})`;
+    get('I1').parentElement.style.color = `rgb(${r},${g},${b})`;
+    get('I2').parentElement.style.color = `rgb(${r},${g},${b})`;
+    get('I3').parentElement.style.color = `rgb(${r},${g},${b})`;
+    get('I1').oninput();
+    get('I2').oninput();
+    get('I3').oninput();
+}
 
 });
 
