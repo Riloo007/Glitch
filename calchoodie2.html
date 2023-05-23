@@ -62,6 +62,7 @@
             background: #d6d6d6;
             color: black;
             padding: 10px;
+            padding-bottom: 0px;
             border: solid 2px #6c6c6c;
             margin: 10px;
         }
@@ -98,9 +99,50 @@
                 <p>Logo Color<br><input id="I2" type="text" data-coloris></p><br>
                 <p>Sweater Color<br><input id="I3" type="text" data-coloris></p><br>
                 <button onclick="saveColor()">Like it ❤️</button>
+
+                <!--
+
+                    Prefilled Stuff
+                -->
+                
                 <div id="savedColors">
+    
+                    <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">
+                        <div style="background: #ffffff"></div>
+                        <div style="background: #ff2a16"></div>
+                        <div style="background: #050505"></div>
+                        <span>#ffffff #ff2a16 #050505</span>
+                        <img src="ex.png" onclick="this.parentElement.remove()">
+                    </div>
                     
-                </div>
+                    <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">
+                        <div style="background: #1a9e1c"></div>
+                        <div style="background: #1a9e1c"></div>
+                        <div style="background: #0f4719"></div>
+                        <span>#1a9e1c #1a9e1c #0f4719</span>
+                        <img src="ex.png" onclick="this.parentElement.remove()">
+                    </div>
+                    
+                    <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">
+                        <div style="background: #4fdfff"></div>
+                        <div style="background: #4fdfff"></div>
+                        <div style="background: #454545"></div>
+                        <span>#4fdfff #4fdfff #454545</span>
+                        <img src="ex.png" onclick="this.parentElement.remove()">
+                    </div>
+                    
+                    
+                    
+                    <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">
+                        <div style="background: #9c0087"></div>
+                        <div style="background: #9c0087"></div>
+                        <div style="background: #ffbfea"></div>
+                        <span>#9c0087 #9c0087 #ffbfea</span>
+                        <img src="ex.png" onclick="this.parentElement.remove()">
+                    </div>
+                    </div>
+
+                <!--              -->
             </div>
         </div>
     </div>
