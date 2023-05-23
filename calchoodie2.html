@@ -236,21 +236,32 @@ Coloris({
     closeLabel: '✅'
 })
 
+});
+
 function randomizeColors() {
     r = Math.round(Math.random() * 255);
     g = Math.round(Math.random() * 255);
     b = Math.round(Math.random() * 255);
-    get('I1').value = `rgb(${r},${g},${b})`;
-    get('I2').value = `rgb(${r},${g},${b})`;
-    get('I3').value = `rgb(${r},${g},${b})`;
-    get('I1').parentElement.style.color = `rgb(${r},${g},${b})`;
-    get('I2').parentElement.style.color = `rgb(${r},${g},${b})`;
-    get('I3').parentElement.style.color = `rgb(${r},${g},${b})`;
+    get('I1').value = rgbToHex(r,g,b);
+    get('I1').parentElement.style.color = rgbToHex(r,g,b);
+    r = Math.round(Math.random() * 255);
+    g = Math.round(Math.random() * 255);
+    b = Math.round(Math.random() * 255);
+    get('I2').value = rgbToHex(r,g,b);
+    get('I2').parentElement.style.color = rgbToHex(r,g,b);
+    r = Math.round(Math.random() * 255);
+    g = Math.round(Math.random() * 255);
+    b = Math.round(Math.random() * 255);
+    get('I3').value = rgbToHex(r,g,b);
+    get('I3').parentElement.style.color = rgbToHex(r,g,b);
     get('I1').oninput();
     get('I2').oninput();
     get('I3').oninput();
 }
 
-});
+function rgbToHex(r, g, b) {
+    return('#' + r.toString(16) + (r<16?'0':'') + g.toString(16) + (g<16?'0':'') + b.toString(16) + (b<16?'0':''));
+}
+
 
 </script>
