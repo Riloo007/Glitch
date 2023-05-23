@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>CalcHoodie - Edit</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
     <style>
         .main{
             display: flex;
@@ -26,6 +28,42 @@
         .imgcont img {
             max-width: 100vh;
         }
+        .clr-field button {
+            width: 100%;
+        }
+        p {
+            font-family: sans-serif;
+            text-align: left;
+            margin: 10px;
+            margin-bottom: 0px;
+            border: solid black 2px;
+            padding: 5px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .clr-field input {
+            cursor: pointer;
+        }
+        .clr-field {
+            border-radius: 10px;
+        }
+        .clr-field * {
+            border-radius: inherit;
+            border: none;
+            outline: none;
+        }
+        .clr-field button {
+            padding: 10px;
+        }
+        #savedColors {
+            border-radius: 5px;
+            font-family: monospace;
+            background: #d6d6d6;
+            color: black;
+            padding: 10px;
+            border: solid 2px #6c6c6c;
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
@@ -35,9 +73,14 @@
         </div>
         <div class="settings">
             <div>
-                <p>Title Color</p><input id="I1" type="color"><br>
-                <p>Logo Color</p><input id="I2" type="color"><br>
-                <p>Sweater Color</p><input id="I3" type="color"><br>
+                <p>Title Color<br><input id="I1" type="text" data-coloris></p><br>
+                <p>Logo Color<br><input id="I2" type="text" data-coloris></p><br>
+                <p>Sweater Color<br><input id="I3" type="text" data-coloris></p><br>
+                <button onclick="document.getElementById('savedColors').innerHTML += `
+                    ${document.getElementById('I1').value}   ${document.getElementById('I2').value}   ${document.getElementById('I3').value}<br>`">Like it ❤️</button>
+                <div id="savedColors">
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -85,6 +128,14 @@ get("I3").oninput = function() {
     const c = get('I3').value;
     svg.getElementById('background').style.fill = c;
 }
+
+get('I1').value = '#ffffff'
+get('I2').value = '#ff2a16'
+get('I3').value = '#050505'
+
+get('I1').parentElement.style.color = "#ffffff"
+get('I2').parentElement.style.color = "#ff2a16"
+get('I3').parentElement.style.color = "#050505"
 
 });
 
