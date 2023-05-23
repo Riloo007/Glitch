@@ -46,6 +46,7 @@
         }
         .clr-field {
             border-radius: 10px;
+            width: 100%;
         }
         .clr-field * {
             border-radius: inherit;
@@ -64,6 +65,21 @@
             border: solid 2px #6c6c6c;
             margin: 10px;
         }
+        .colorPreview div {
+            width: 10px;
+            height: 30px;
+        }
+        .colorPreview {
+            display: flex;
+            border: solid 2px black;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .colorPreview span {padding: 6px;}
     </style>
 </head>
 <body>
@@ -76,8 +92,7 @@
                 <p>Title Color<br><input id="I1" type="text" data-coloris></p><br>
                 <p>Logo Color<br><input id="I2" type="text" data-coloris></p><br>
                 <p>Sweater Color<br><input id="I3" type="text" data-coloris></p><br>
-                <button onclick="document.getElementById('savedColors').innerHTML += `
-                    ${document.getElementById('I1').value}   ${document.getElementById('I2').value}   ${document.getElementById('I3').value}<br>`">Like it ❤️</button>
+                <button onclick="saveColor()">Like it ❤️</button>
                 <div id="savedColors">
                     
                 </div>
@@ -102,6 +117,35 @@
 
 <script>
 function get(i) {return document.getElementById(i);}
+
+function saveColor() {
+    const c1 = get('I1').value;
+    const c2 = get('I2').value;
+    const c3 = get('I3').value;
+
+    const save = `
+    <div class='colorPreview' onclick='loadColor(this.querySelector("span").innerHTML)'>
+        <div style='background: ${c1}'></div>
+        <div style='background: ${c2}'></div>
+        <div style='background: ${c3}'></div>
+        <span>${c1} ${c2} ${c3}<span>
+    </div>
+    `
+
+    get('savedColors').innerHTML += save;
+}
+
+function loadColor(span) {
+    console.log(span);
+
+    document.querySelector('#I1').value = span.substring(0, 7);
+    document.querySelector('#I2').value = span.substring(8, 15);
+    document.querySelector('#I3').value = span.substring(16, 23);
+
+    document.querySelector('#I1').dispatchEvent(new Event('input', { bubbles: true }));
+    document.querySelector('#I2').dispatchEvent(new Event('input', { bubbles: true }));
+    document.querySelector('#I3').dispatchEvent(new Event('input', { bubbles: true }));
+}
 
 var svg;
 document.addEventListener("DOMContentLoaded", function() {
