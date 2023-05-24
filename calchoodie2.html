@@ -249,7 +249,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 get("I1").oninput = function() {
     const c = get('I1').value;
-    svg.getElementById('calc2023').querySelectorAll('*').forEach(node => {
+    const paths = svg.getElementById('calc2023').querySelectorAll('*');
+    paths.forEach(function (node, i) {
         node.style.stroke = c;
     });
     if(linked) {
@@ -261,7 +262,8 @@ get("I1").oninput = function() {
 
 get("I2").oninput = function() {
     const c = get('I2').value;
-    svg.getElementById('logo').querySelectorAll('*').forEach(node => {
+    const paths = svg.getElementById('logo').querySelectorAll('*');
+    paths.forEach(function (node, i) {
         node.style.stroke = c;
     });
     if(linked) {
