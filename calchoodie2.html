@@ -256,7 +256,12 @@ get("I1").oninput = function() {
     if(linked) {
         get('I2').value = get('I1').value;
         get('I2').parentElement.style.color = get('I1').value;
-        get('I2').oninput();
+        
+        const c1 = get('I2').value;
+        const paths1 = svg.getElementById('logo').querySelectorAll('*');
+        paths1.forEach(function (node, i) {
+            node.style.stroke = c;
+        });
     }
 }
 
@@ -269,7 +274,12 @@ get("I2").oninput = function() {
     if(linked) {
         get('I1').value = get('I2').value;
         get('I1').parentElement.style.color = get('I2').value;
-        get('I1').oninput();
+        
+        const c1 = get('I1').value;
+        const paths1 = svg.getElementById('calc2023').querySelectorAll('*');
+        paths1.forEach(function (node, i) {
+            node.style.stroke = c;
+        });
     }
 }
 
