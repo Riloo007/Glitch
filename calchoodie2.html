@@ -32,7 +32,6 @@
             width: 100%;
         }
         p {
-            font-family: sans-serif;
             text-align: left;
             margin: 10px;
             margin-bottom: 0px;
@@ -86,7 +85,55 @@
         }
 
         .colorPreview span {padding: 6px;}
+
+        .imgcont {
+            display: none;
+        }
+
+        .controls {text-align: left; padding: 10px;}
+        .controls button {
+            width: calc(50% - 10px);
+            height: 40px;
+            margin: 5px;
+            background: #dae5ff;
+            border: solid #00689f 2px;
+            border-radius: 5px;
+        }
+        .controls button:last-child {transform: translate(0px, 1px);}
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        *:not(.colorPreview span) {
+            font-family: 'Ubuntu', sans-serif;
+        }
+        .colorPreview span {
+            font-family: monospace;
+        }
+
+        .checkboxText {
+            font-size: 20px;
+            transform: translate(0px, -3px);
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .main {
+                flex-direction: column;
+            }
+            .img-container {
+                width: calc(100vw - 100px) !important;
+                height: auto !important;
+            }
+        }
     </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="main">
@@ -95,11 +142,14 @@
         </div>
         <div class="settings">
             <div>
-                <p id="titlecolor">Title Color<br><input readonly id="I1" type="text" data-coloris></p><br>
-                <p id="logocolor">Logo Color<br><input readonly id="I2" type="text" data-coloris></p><br>
-                <p>Sweater Color<br><input readonly id="I3" type="text" data-coloris></p><br>
-                <input id="linked" type="checkbox" onchange="toggleLink()"> Only 1 Color <br>
-                <button onclick="randomizeColors()">Random 🎲</button><button onclick="saveColor()">Save ⬇</button>
+                <p id="titlecolor">Title Color<br><input readonly id="I1" type="text" data-coloris></p>
+                <p id="logocolor">Logo Color<br><input readonly id="I2" type="text" data-coloris></p>
+                <p>Sweater Color<br><input readonly id="I3" type="text" data-coloris></p>
+                <div class="controls">
+                    <input id="linked" type="checkbox" onchange="toggleLink()"><span class="checkboxText">Only 1 Color</span><br>
+                    <button onclick="randomizeColors()">Random 🎲</button><button onclick="saveColor()">Save ⬇</button>
+                </div>
+                
 
                 <!--
 
