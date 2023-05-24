@@ -300,13 +300,16 @@ function randomizeColors() {
     b = Math.round(Math.random() * 255);
     get('I1').value = rgbToHex(r,g,b);
     get('I1').parentElement.style.color = rgbToHex(r,g,b);
-    r = Math.round(Math.random() * 255);
-    g = Math.round(Math.random() * 255);
-    b = Math.round(Math.random() * 255);
+    if(!linked) {
+        r = Math.round(Math.random() * 255);
+        g = Math.round(Math.random() * 255);
+        b = Math.round(Math.random() * 255);        
+    }
     get('I2').value = rgbToHex(r,g,b);
     get('I2').parentElement.style.color = rgbToHex(r,g,b);
     
     r = swatches[Math.round(Math.random() * (swatches.length - 1))]
+    get('I3').value = r;
     get('I3').parentElement.style.color = r;
     get('I1').oninput();
     get('I2').oninput();
