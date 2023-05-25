@@ -120,6 +120,32 @@
             margin-left: 5px;
         }
 
+        #gradientLogo div {
+            width: 100%;
+            height: 100vw;
+        }
+        input#gradangle {
+            width: 100%;
+        }
+
+        #settings * {
+    font-family: monospace;
+    color: white;
+}
+p#settings {
+    padding: 10px;
+    background: #2a2a2a;
+    cursor: pointer;
+    position: relative;
+}
+#settings img {
+    filter: invert(1);
+    width: 30px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
         @media only screen and (max-width: 600px) {
             .main {
                 flex-direction: column;
@@ -136,17 +162,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
+    <p
+    style="padding: 20px;"
+    >Please use the interface below to choose a color combination then send your configuration, size, and name (to be printed on the back of the hoodie) to Riley (403-393-5822). <br><br>
+    NOTE the only available hoodie colors are shown in the color pallete.</p><br>
     <div class="main">
         <div class="img-container">
             <object id="image" type="image/svg+xml" data="template2.svg"></object>
+            <div id="gradientLogo" style="
+                -webkit-mask-image: url(https://riloo007.github.io/Glitch/mask.png);
+                mask-image: url(https://riloo007.github.io/Glitch/mask.png);
+                -webkit-mask-size: contain;
+                mask-size: contain;
+                -webkit-mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
+                max-height: calc(90vh);
+                display: none;
+            "><div></div></div>
         </div>
         <div class="settings">
             <div>
+                <p id="settings" onclick="navigator.clipboard.writeText(get('config').innerText); alert('Copied configuration to clipboard.')">
+                    <strong>Current Configuration</strong>
+                    <span id="config"></span>
+                    <img src="https://img.uxwing.com/wp-content/themes/uxwing/download/file-folder-type/copy-icon.png">
+                </p>
                 <p id="titlecolor">Title Color<br><input readonly id="I1" type="text" data-coloris></p>
                 <p id="logocolor">Logo Color<br><input readonly id="I2" type="text" data-coloris></p>
                 <p>Sweater Color<br><input readonly id="I3" type="text" data-coloris></p>
                 <div class="controls">
                     <input id="linked" type="checkbox" onchange="toggleLink()"><span class="checkboxText">Only 1 Color</span><br>
+                    <input id="gradient" type="checkbox" onchange="toggleGradient()"><span class="checkboxText">Gradient</span><br>
+                    <input style="display: none;" id="gradangle" oninput="get('I1').oninput()" type='range' min='0' max='360' value="90"><br>
                     <button onclick="randomizeColors()">Random 🎲</button><button onclick="saveColor()">Save ⬇</button>
                 </div>
                 
@@ -157,21 +204,6 @@
                 -->
                 
                 <div id="savedColors">
-    
-
-                <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">
-                <div style="background: #3c7fba"></div>        <div style="background: #3c7fba"></div>
-                <div style="background: #71001C"></div>        <span>#3c7fba #3c7fba #71001C</span>
-                <img src="ex.png" onclick="this.parentElement.remove()">    </div>
-                <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">
-                    <div style="background: #bce13b"></div>        <div style="background: #bce13b"></div>
-                    <div style="background: #5C5C5C"></div>        <span>#bce13b #bce13b #5C5C5C</span>
-                    <img src="ex.png" onclick="this.parentElement.remove()">    </div>
-                    <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">
-                        <div style="background: #bc2d35"></div>        <div style="background: #bc2d35"></div>
-                        <div style="background: #631C1C"></div>        <span>#bc2d35 #bc2d35 #631C1C</span>        <img src="ex.png" onclick="this.parentElement.remove()">    </div>                <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">        <div style="background: #ffffff"></div>        <div style="background: #ffffff"></div>        <div style="background: #000000"></div>        <span>#ffffff #ffffff #000000</span>        <img src="ex.png" onclick="this.parentElement.remove()">    </div>                <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">        <div style="background: #e3bc50"></div>        <div style="background: #e3bc50"></div>        <div style="background: #34657F"></div>        <span>#e3bc50 #e3bc50 #34657F</span>        <img src="ex.png" onclick="this.parentElement.remove()">    </div>        <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">        <div style="background: #b68b17"></div>        <div style="background: #b68b17"></div>        <div style="background: #005403"></div>        <span>#b68b17 #b68b17 #005403</span>        <img src="ex.png" onclick="this.parentElement.remove()">    </div>        <div class="colorPreview" onclick="loadColor(this.querySelector('span').innerHTML)">        <div style="background: #ffd753"></div>        <div style="background: #ffd753"></div>        <div style="background: #71001c"></div>        <span>#ffd753 #ffd753 #71001c</span>        <img src="ex.png" onclick="this.parentElement.remove()">    </div>
-
-
 
                 </div>
 
@@ -257,8 +289,28 @@ function toggleLink() {
     linked = get('linked').checked;
     if(linked) {
         get('I2').value = get('I1').value;
+        get('I2').parentElement.style.color = get('I1').value
         get('I2').oninput();
     }
+    updateconfig()
+}
+
+var gradient = false;
+function toggleGradient() {
+    gradient = get('gradient').checked;
+    if(!gradient) {
+        get('gradientLogo').style.display = 'none';
+        get('image').style.display = 'block';
+        get('gradangle').style.display = 'none';
+        document.querySelector('.img-container').style.background = 'white';
+    } else {
+        get('gradientLogo').style.display = 'block';
+        get('image').style.display = 'none';
+        get('gradangle').style.display = 'block';
+        get('I1').oninput();
+        get('I2').oninput();
+    }
+    updateconfig()
 }
 
 function saveColor() {
@@ -277,6 +329,7 @@ function saveColor() {
     `
 
     get('savedColors').innerHTML += save;
+    updateconfig()
 }
 
 function loadColor(span) {
@@ -292,6 +345,16 @@ function loadColor(span) {
 
     get('linked').checked = false;
     linked = false;
+
+    updateconfig();
+}
+
+function updateconfig() {
+    get('config').innerHTML = `
+    <br>
+    <span>${get('I1').value}  ${get('I2').value}  ${get('I3').value}</span><br>
+    <span>Gradient ${get('gradient').checked}  ${get('gradangle').value}deg</span><br>
+    `
 }
 
 var svg;
@@ -302,6 +365,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
 get("I1").oninput = function() {
+    updateconfig()
+    if(gradient) {
+        get('gradientLogo').children[0].style.background = `linear-gradient(${get('gradangle').value}deg, ${get('I1').value} 0%, ${get('I2').value} 100%)`;
+        return;
+    }
     const c = get('I1').value;
     const paths = svg.getElementById('calc2023').querySelectorAll('*');
     paths.forEach(function (node, i) {
@@ -320,6 +388,11 @@ get("I1").oninput = function() {
 }
 
 get("I2").oninput = function() {
+    updateconfig()
+    if(gradient) {
+        get('gradientLogo').children[0].style.background = `linear-gradient(${get('gradangle').value}deg, ${get('I1').value} 0%, ${get('I2').value} 100%)`;
+        return;
+    }
     const c = get('I2').value;
     const paths = svg.getElementById('logo').querySelectorAll('*');
     paths.forEach(function (node, i) {
@@ -338,7 +411,9 @@ get("I2").oninput = function() {
 }
 
 get("I3").oninput = function() {
+    updateconfig()
     const c = get('I3').value;
+    document.querySelector('.img-container').style.background = c;
     svg.getElementById('background').style.fill = c;
 }
 
@@ -388,5 +463,5 @@ function rgbToHex(r, g, b) {
 
 swatches[Math.round(Math.random() * (swatches.length - 1))]
 
-
+setTimeout(updateconfig, 100);
 </script>
