@@ -11,6 +11,7 @@
             text-align: center;
         }
         .img-container {
+            background: #303030;
             width: calc(100vh - 60px);
             height: calc(100vh - 60px);
             padding: 20px;
@@ -203,13 +204,13 @@ li {
         <div class="settings">
             <div>
                 <p id="settings" onclick="navigator.clipboard.writeText(get('config').innerText); alert('Copied configuration to clipboard.')">
-                    <strong>Current Configuration</strong>
+                    <strong>Current Color Configuration</strong>
                     <span id="config"></span>
                     <img src="https://img.uxwing.com/wp-content/themes/uxwing/download/file-folder-type/copy-icon.png">
                 </p>
-                <p id="titlecolor">Title Color<br><input readonly id="I1" type="text" onclick="showStuff()" data-coloris></p>
-                <p id="logocolor">Logo Color<br><input readonly id="I2" type="text" onclick="showStuff()" data-coloris></p>
-                <p>Sweater Color<br><input readonly id="I3" type="text" onclick="hideStuff()" data-coloris></p>
+                <p style="cursor: pointer;" onclick="showStuff(); get('I1').click()">Title Color<br><input style="pointer-events: none;" readonly id="I1" type="text" data-coloris></p>
+                <p style="cursor: pointer;" onclick="showStuff(); get('I2').click()">Logo Color<br><input style="pointer-events: none;" readonly id="I2" type="text" data-coloris></p>
+                <p style="cursor: pointer;" onclick="hideStuff(); get('I3').click()">Sweater Color<br><input style="pointer-events: none;" readonly id="I3" type="text" data-coloris></p>
                 <div class="controls">
                     <input id="linked" type="checkbox" onchange="toggleLink()"><span class="checkboxText">Only 1 Color</span><br>
                     <input id="gradient" type="checkbox" onchange="toggleGradient()"><span class="checkboxText">Gradient</span><br>
@@ -259,17 +260,14 @@ li {
 function get(i) {return document.getElementById(i);}
 
 function hideStuff() {
-document.querySelector('.clr-hue').style.display = 'none';
-document.querySelector('.clr-alpha').style.display = 'none';
-setTimeout(function(){
-    document.querySelector('.clr-gradient').style.display = 'none';
-}, 20)
+    Coloris({
+        swatchesOnly: true
+    });
 }
 function showStuff() {
-    return;
-document.querySelector('.clr-gradient').style.display = 'block';
-document.querySelector('.clr-hue').style.display = 'inline-block';
-document.querySelector('.clr-alpha').style.display = 'inline-block';
+    Coloris({
+        swatchesOnly: false
+    });
 }
 /*
 const swatches = [
@@ -456,11 +454,11 @@ get("I3").oninput = function() {
 
 get('I1').value = '#ffffff'
 get('I2').value = '#ff2a16'
-get('I3').value = '#050505'
+get('I3').value = '#303030'
 
 get('I1').parentElement.style.color = "#ffffff"
 get('I2').parentElement.style.color = "#ff2a16"
-get('I3').parentElement.style.color = "#050505"
+get('I3').parentElement.style.color = "#303030"
 
 Coloris({
     focusInput: false,
