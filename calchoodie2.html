@@ -303,12 +303,16 @@ function toggleGradient() {
         get('image').style.display = 'block';
         get('gradangle').style.display = 'none';
         document.querySelector('.img-container').style.background = 'white';
+        get('I1').oninput();
+        get('I2').oninput();
+        get('I3').oninput();
     } else {
         get('gradientLogo').style.display = 'block';
         get('image').style.display = 'none';
         get('gradangle').style.display = 'block';
         get('I1').oninput();
         get('I2').oninput();
+        get('I3').oninput();
     }
     updateconfig()
 }
