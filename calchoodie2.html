@@ -146,6 +146,9 @@ p#settings {
     right: 10px;
     bottom: 10px;
 }
+li {
+    margin-top: 10px;
+}
 
         @media only screen and (max-width: 600px) {
             .main {
@@ -163,12 +166,26 @@ p#settings {
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <p
-    style="padding: 20px;"
-    >Please use the interface below to choose a color combination then send your configuration, size, and name (to be printed on the back of the hoodie) to Riley (403-393-5822). <br><br>
-    <strong style="background: #ff9090;
-    padding: 5px;
-    border-radius: 5px;">NOTE the only available hoodie colors are shown in the color pallete. <a href="https://www.gelato.com/custom/mens-clothing/hoodies/classic-unisex-pullover-hoodie">(Hoodie)</a></strong></p><br>
+    <div style="padding: 20px; border: solid black 2px; border-radius: 10px;">
+        Please use the interface below to choose a color combination then send your configuration, size, and name (to be printed on the back of the hoodie) to Riley (403-393-5822). <br>
+        <br>Names will be printed on the back with the same color as the logo unless requested otherwise. <br>
+        <br>Logos will be printed full size on the front unless requested otherwise.<br>
+        <br> Hoodies will be purchased from Gelato <a href="https://www.gelato.com/custom/mens-clothing/hoodies/classic-unisex-pullover-hoodie">here for about $15/ea.</a>
+        <br><br>
+        <div style="background: #ff9090; display: block;
+                    padding: 20px;
+                    font-weight: bold;
+                    font-size: 18px;
+                    border-radius: 5px;">
+            <span style="font-size: 90%;">CHECKLIST</span><br>
+            <span class="list">
+                <li>Name (to be printed on sweater)</li>
+                <li>Color Combination (Copy Below)</li>
+                <li>Size (Sizing guide <a href="https://www.gelato.com/custom/mens-clothing/hoodies/classic-unisex-pullover-hoodie#:~:text=the%20same%20country.-,Size%20guide,-Metric%20(cm)">here</a>)</li>
+            </span>
+        </div>
+    </div>
+    <br>
     <div class="main">
         <div class="img-container">
             <object id="image" type="image/svg+xml" data="template2.svg"></object>
@@ -190,9 +207,9 @@ p#settings {
                     <span id="config"></span>
                     <img src="https://img.uxwing.com/wp-content/themes/uxwing/download/file-folder-type/copy-icon.png">
                 </p>
-                <p id="titlecolor">Title Color<br><input readonly id="I1" type="text" data-coloris></p>
-                <p id="logocolor">Logo Color<br><input readonly id="I2" type="text" data-coloris></p>
-                <p>Sweater Color<br><input readonly id="I3" type="text" data-coloris></p>
+                <p id="titlecolor">Title Color<br><input readonly id="I1" type="text" onclick="showStuff()" data-coloris></p>
+                <p id="logocolor">Logo Color<br><input readonly id="I2" type="text" onclick="showStuff()" data-coloris></p>
+                <p>Sweater Color<br><input readonly id="I3" type="text" onclick="hideStuff()" data-coloris></p>
                 <div class="controls">
                     <input id="linked" type="checkbox" onchange="toggleLink()"><span class="checkboxText">Only 1 Color</span><br>
                     <input id="gradient" type="checkbox" onchange="toggleGradient()"><span class="checkboxText">Gradient</span><br>
@@ -205,11 +222,11 @@ p#settings {
 
                     Prefilled Stuff
                 -->
-                
+                <i>Saved colors are lost when the page reloads</i>
                 <div id="savedColors">
 
                 </div>
-
+<!--
                 <a href="https://thatshirt.com/design-custom/best-sellers/gildan-1850-heavy-blend-50-50-pullover-hoodie/">Hoodie Source (Thatshirt)</a>
                 <a href="https://www.gelato.com/custom">OTHER Hoodie Source (Gelato)</a>
                 <p style="
@@ -218,7 +235,7 @@ p#settings {
                     margin-top: 20px;
                 ">Gelato is a LOT cheaper with their first purchase of 50% off, so their Gildan 18500 hoodies which are normally $30-$40 bucks are now $15-$20/ea. Gelato has good online reviews and is much more established and well known than Thatshirt. They are primarily for ecommerce businesses but offer a personalized 'sample order.' with 50% off.</p>
 
-                <!--              -->
+                              -->
             </div>
         </div>
     </div>
@@ -241,6 +258,19 @@ p#settings {
 <script>
 function get(i) {return document.getElementById(i);}
 
+function hideStuff() {
+document.querySelector('.clr-hue').style.display = 'none';
+document.querySelector('.clr-alpha').style.display = 'none';
+setTimeout(function(){
+    document.querySelector('.clr-gradient').style.display = 'none';
+}, 20)
+}
+function showStuff() {
+    return;
+document.querySelector('.clr-gradient').style.display = 'block';
+document.querySelector('.clr-hue').style.display = 'inline-block';
+document.querySelector('.clr-alpha').style.display = 'inline-block';
+}
 /*
 const swatches = [
         '#C93452',
