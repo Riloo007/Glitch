@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   height="1000"
+   width="1000"
+   sodipodi:docname="Font.svg"
+   version="1.1"
+   id="svg141"
+   viewBox="0 0 1000 1000"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.3"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.5"
+     inkscape:cx="-38"
+     inkscape:cy="649"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer12"
+     showgrid="false"
+     showguides="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     showborder="true"
+     inkscape:showpageshadow="false"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <sodipodi:guide
+       id="guide_baseline"
+       inkscape:label="baseline"
+       position="0,253"
+       orientation="0,1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       id="guide_ascender"
+       inkscape:label="ascender"
+       position="0,945"
+       orientation="0,1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       id="guide_caps"
+       inkscape:label="caps"
+       position="0,896"
+       orientation="0,1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       id="guide_xheight"
+       inkscape:label="xheight"
+       position="0,729"
+       orientation="0,1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       id="guide_descender"
+       inkscape:label="descender"
+       position="0,28"
+       orientation="0,1"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs4">
+    <rect
+       x="192"
+       y="160"
+       width="640"
+       height="536"
+       id="rect2835" />
+    <font
+       horiz-adv-x="1000"
+       id="font2598"
+       inkscape:label="BubbleFont">
+      <font-face
+         units-per-em="1000"
+         ascent="750"
+         cap-height="600"
+         x-height="400"
+         descent="200"
+         id="font-face2600"
+         font-family="SVGFont 1" />
+      <missing-glyph
+         d="M0,0h1000v1000h-1000z"
+         id="missing-glyph2602" />
+      <glyph
+         glyph-name=""
+         unicode="A"
+         id="glyph2618"
+         horiz-adv-x="0.00" />
+      <glyph
+         glyph-name=""
+         unicode="C"
+         id="glyph2635" />
+      <glyph
+         glyph-name=""
+         unicode="D"
+         id="glyph2659" />
+      <glyph
+         glyph-name=""
+         unicode="E"
+         id="glyph2828" />
+    </font>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="font 1">
+    <g
+       inkscape:groupmode="layer"
+       id="layer11"
+       inkscape:label="U+000045 E"
+       style="display:inline">
+      <path
+         d=""
+         id="path2831" />
+      <path
+         id="path2839"
+         style="color:#000000;fill:#000000;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none"
+         d="M 336 83.349609 A 64.656467 64.656467 0 0 0 271.34961 148 L 271.34961 417 L 271.34961 686 A 64.656467 64.656467 0 0 0 336 750.65039 L 662 750.65039 A 64.650002 64.650002 0 0 0 726.65039 686 A 64.650002 64.650002 0 0 0 662 621.34961 L 400.65039 621.34961 L 400.65039 481.65039 L 580 481.65039 A 64.650002 64.650002 0 0 0 644.65039 417 A 64.650002 64.650002 0 0 0 580 352.34961 L 400.65039 352.34961 L 400.65039 212.65039 L 662 212.65039 A 64.650002 64.650002 0 0 0 726.65039 148 A 64.650002 64.650002 0 0 0 662 83.349609 L 336 83.349609 z " />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer10"
+       inkscape:label="U+000044 D"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         d=""
+         id="path2662" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:129.3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 294,184 v 484 c 0,0 406.62882,94.46548 406.62882,-234.76726 C 700.62882,104 294,184 294,184 Z"
+         id="path2826" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer8"
+       inkscape:label="U+000043 C"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:129.3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 683.94119,237.62627 c 0,0 -56.90325,-68.97628 -153.4654,-68.97628 -96.56214,0 -220.71347,91.66563 -220.71347,257.20293 0,203.19325 172.4313,253.19368 220.71347,253.19368 112.08052,0 153.4654,-50.00043 153.4654,-50.00043"
+         id="path515" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer9"
+       inkscape:label="U+000041 A"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         style="display:inline;fill:none;stroke:#000000;stroke-width:134.248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 287.3197,677.89543 c 0,0 100.01072,-502.77138 211.41417,-502.77138 111.40463,0 213.94642,502.77138 213.94642,502.77138"
+         id="path1179" />
+      <path
+         style="display:inline;fill:none;stroke:#000000;stroke-width:134.248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 356.94702,518.8928 c 85.75915,40.53411 176.14621,63.12714 288.6382,0"
+         id="path1181-7" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer12"
+     inkscape:label="Font" />
+</svg>
