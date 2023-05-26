@@ -197,6 +197,8 @@ li {
                 mask-size: contain;
                 -webkit-mask-repeat: no-repeat;
                 mask-repeat: no-repeat;
+                -webkit-mask-position: center;
+                mask-position: center;
                 max-height: calc(90vh);
                 display: none;
             "><div></div></div>
@@ -261,11 +263,13 @@ function get(i) {return document.getElementById(i);}
 
 function hideStuff() {
     Coloris({
+        swatches: swatches,
         swatchesOnly: true
     });
 }
 function showStuff() {
     Coloris({
+        swatches: [],
         swatchesOnly: false
     });
 }
