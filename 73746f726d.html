@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    </head>
+
+    <body id="main">
+
+    </body>
+
+    <script>
+        function r(i) {
+            return Math.random() * i;
+        }
+
+        let a = `426F6C646F6720737AFC6C6574E9736E61706F742C20626172E1746F6D21204BED76E16E6F6D2C20686F67792066616E7461737A74696B7573206AF6766F64206C656779656E2C2074656C652073696B657265732070726F6A656B74656B6B656C2C20626172E17473E1676F7320656D626572656B6B656C20E97320626F6C646F6720656D6CE96B656B6B656C2E204BF67665736420617A20E16C6D61696461742C20E973206E65206861626F7A7A2C20686F67792069646F6E6BE96E74206BFC6C646A206E656B656D2065677920652D6D61696C74210A0A4373616B20ED677920746F76E162622C0A52696C6579202D2072696C65792E70696572736F6E406D697373696F6E6172792E6F7267`
+        let b = a.split("");
+        let c = document.getElementById("main");
+        let y = [];
+        b.forEach((z, i)=>{
+            y.push(document.createElement("input"));
+            y[i].value = z;
+            y[i].style.scale = `${r(1) + 1.5}`;
+            y[i].style.width = `${r(40) + 25}px`;
+            y[i].style.fontSize = `${r(35) + 15}px`;
+            y[i].style.color = `rgb(${r(255)},${r(255)},${r(255)})`;
+            y[i].style.background = `rgba(${r(255)},${r(255)},${r(255)}, 0.2)`;
+            c.appendChild(y[i]);
+        });
+
+
+        console.log("%cWell hello there 👀", 'font-family: "IBM Plex Mono", monospace; font-size: 20px; color: #3271a8;')
+    </script>
+
+    <style>
+        input {
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        body {
+            background-color: black;
+            text-align: center;
+            padding: 20px;
+        }
+
+        ::-webkit-scrollbar {display: none;}
+    </style>
+</html>
