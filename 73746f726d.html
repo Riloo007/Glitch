@@ -3,6 +3,26 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    
+        <style>
+            input {
+                border: none;
+                outline: none;
+                border-radius: 10px;
+                text-align: center;
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 900;
+                font-style: normal;
+            }
+    
+            body {
+                background-color: black;
+                text-align: center;
+                padding: 20px;
+            }
+    
+            ::-webkit-scrollbar {display: none;}
+        </style>
     </head>
 
     <body id="main">
@@ -29,27 +49,23 @@
             c.appendChild(y[i]);
         });
 
+        function o() {
+            y.forEach((x, i)=>{
+                if(r(1) > 0.2) return;
+
+                y[i].style.scale = `${r(1) + 1.5} ${r(1) + 1.5}`;
+                y[i].style.color = `rgb(${r(255)},${r(255)},${r(255)})`;
+                y[i].style.background = `rgba(${r(255)},${r(255)},${r(255)}, 0.2)`;
+            });
+        }
+        setInterval(o, 1000);
+
+        let d = document.createElement("style");
+        document.styleSheets[1].insertRule(`* {transition-duration: 4000ms;}`);
+        setTimeout(()=>{o()}, 10);
 
         console.log("%cWell hello there 👀", 'font-family: "IBM Plex Mono", monospace; font-size: 20px; color: #3271a8;')
     </script>
 
-    <style>
-        input {
-            border: none;
-            outline: none;
-            border-radius: 10px;
-            text-align: center;
-            font-family: "IBM Plex Mono", monospace;
-            font-weight: 900;
-            font-style: normal;
-        }
-
-        body {
-            background-color: black;
-            text-align: center;
-            padding: 20px;
-        }
-
-        ::-webkit-scrollbar {display: none;}
-    </style>
+    
 </html>
